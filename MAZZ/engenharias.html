@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>MAZZ - TECNOLOGIA</title>
+    <style>
+      :root {
+        --matrix-green: #00ff41;
+        --dark-bg: #0d0208;
+        --card-bg: rgba(0, 40, 0, 0.2);
+        --glow: 0 0 15px rgba(0, 255, 65, 0.6);
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background-color: var(--dark-bg);
+        color: var(--matrix-green);
+        font-family: "Courier New", Courier, monospace;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      body::before {
+        content: " ";
+        display: block;
+        position: fixed;
+        top: 0; left: 0; bottom: 0; right: 0;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                    linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+        z-index: 2000;
+        background-size: 100% 4px, 3px 100%;
+        pointer-events: none;
+      }
+      #matrix-canvas {
+        position: fixed;
+        top: 0; left: 0; z-index: -1;
+        opacity: 0.25;
+      }
+      nav {
+        background: rgba(0, 0, 0, 0.9);
+        border-bottom: 2px solid var(--matrix-green);
+        padding: 15px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0; z-index: 1000;
+        box-shadow: var(--glow);
+      }
+      .nav-brand { font-weight: bold; font-size: clamp(1rem, 4vw, 1.4rem); text-shadow: var(--glow); letter-spacing: 2px; }
+      .nav-links { display: flex; gap: 20px; }
+      .nav-links a {
+        color: var(--matrix-green);
+        text-decoration: none;
+        font-weight: bold;
+        padding: 8px 15px;
+        border: 1px solid transparent;
+        transition: all 0.3s;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+      }
+      .nav-links a:hover {
+        border: 1px solid var(--matrix-green);
+        box-shadow: var(--glow);
+        background: rgba(0, 255, 65, 0.1);
+      }
+      header { text-align: center; padding: 40px 15px; }
+      header h1 {
+        font-size: clamp(1.8rem, 8vw, 3rem);
+        letter-spacing: 5px;
+        text-shadow: var(--glow);
+        margin-bottom: 10px;
+      }
+      .container {
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+      }
+      .coming-soon {
+        font-size: 2rem;
+        text-align: center;
+        letter-spacing: 10px;
+        text-shadow: var(--glow);
+        border: 2px solid var(--matrix-green);
+        padding: 40px;
+        background: var(--card-bg);
+        backdrop-filter: blur(8px);
+      }
+      footer {
+        text-align: center;
+        padding: 30px;
+        background: rgba(0, 0, 0, 0.9);
+        border-top: 2px solid var(--matrix-green);
+        margin-top: 40px;
+      }
+      footer h3 { font-size: 0.8rem; line-height: 1.6; font-weight: normal; }
+
+      @media (max-width: 600px) {
+        nav { flex-direction: column; gap: 15px; text-align: center; }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="matrix-canvas"></canvas>
+    <nav>
+      <div class="nav-brand">MAZZ - SEU FUTURO COMEÇA AQUI</div>
+      <div class="nav-links">
+        <a href="index.html">INÍCIO</a>
+        <a href="marcio-eng.html" target="_blank">PROFESSOR</a>
+      </div>
+    </nav>
+    <header>
+      <h1>CENTRAL DE TREINAMENTO</h1>
+      <p>> Status: Sistema em manutenção de protocolos...</p>
+    </header>
+
+    <div class="container" id="grid">
+        <div class="coming-soon">CURSOS EM BREVE</div>
+    </div>
+
+    <footer>
+      <h3>&copy; 2026 MAZZ. Todos os direitos reservados <br>
+      Goiânia-GO | (62) 99646-6033</h3>
+    </footer>
+
+    <script>
+      const canvas = document.getElementById("matrix-canvas");
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const chars = "010101ABCDEFHIJKLMNOPQRSTUVWXYZ";
+      const fontSize = 16;
+      const columns = canvas.width / fontSize;
+      const drops = Array(Math.floor(columns)).fill(1);
+      function draw() {
+        ctx.fillStyle = "rgba(13, 2, 8, 0.05)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#00ff41";
+        ctx.font = fontSize + "px monospace";
+        for (let i = 0; i < drops.length; i++) {
+          const text = chars[Math.floor(Math.random() * chars.length)];
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+          drops[i]++;
+        }
+      }
+      setInterval(draw, 35);
+    </script>
+  </body>
+</html>

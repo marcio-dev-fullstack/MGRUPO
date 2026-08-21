@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Márcio Rodrigues de Oliveira - Engenheiro Civil Pleno</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1e3a5f;
+            --secondary: #2c5282;
+            --accent: #d69e2e;
+            --light: #f7fafc;
+            --dark: #1a202c;
+            --gray: #718096;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(30, 58, 95, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 0.95em;
+            opacity: 0.95;
+        }
+
+        .contact-info span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-info svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--accent);
+        }
+
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 35px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+        }
+
+        .profile-text {
+            font-size: 1.1em;
+            color: var(--gray);
+            font-style: italic;
+            border-left: 4px solid var(--accent);
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .skill-category {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            font-size: 1.1em;
+            margin-bottom: 12px;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 0.95em;
+        }
+
+        .skill-category li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .experience-item {
+            margin-bottom: 30px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .exp-title {
+            font-size: 1.2em;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .exp-company {
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 1em;
+        }
+
+        .exp-date {
+            background: var(--accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .exp-location {
+            color: var(--gray);
+            font-size: 0.9em;
+            margin-bottom: 12px;
+        }
+
+        .exp-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .exp-list li {
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .exp-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid var(--accent);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 0.95em;
+            color: var(--dark);
+        }
+
+        .highlight-box strong {
+            color: var(--primary);
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .edu-item {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .edu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--secondary);
+        }
+
+        .edu-degree {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .edu-school {
+            color: var(--gray);
+            font-size: 0.95em;
+        }
+
+        .edu-year {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+        }
+
+        .post-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .post-item {
+            background: white;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+
+        .post-item:hover {
+            border-color: var(--secondary);
+            background: var(--light);
+        }
+
+        .post-number {
+            background: var(--secondary);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75em;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .ongoing {
+            opacity: 0.8;
+        }
+
+        .ongoing .post-number {
+            background: var(--accent);
+        }
+
+        .differentials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .diff-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 15px;
+            background: var(--light);
+            border-radius: 10px;
+        }
+
+        .diff-icon {
+            font-size: 1.5em;
+            flex-shrink: 0;
+        }
+
+        .diff-text {
+            font-size: 0.95em;
+            color: var(--dark);
+        }
+
+        .objective {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .objective h2 {
+            color: white;
+            border-bottom-color: var(--accent);
+        }
+
+        .objective p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--gray);
+            font-size: 0.9em;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .section {
+                box-shadow: none;
+                border: 1px solid var(--border);
+                break-inside: avoid;
+            }
+            header {
+                box-shadow: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            .exp-header {
+                flex-direction: column;
+            }
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>MÁRCIO RODRIGUES DE OLIVEIRA</h1>
+                <div class="subtitle">Engenheiro Civil Pleno | Multiespecialista em Projetos</div>
+                <div class="contact-info">
+                    <span>
+                        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        Conceição do Araguaia, PA
+                    </span>
+                    <span>
+                        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        (94) 99250-0073
+                    </span>
+                    <span>
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        cda.marcio@gmail.com
+                    </span>
+                    <span>
+                        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                        CREA-PA: 1522223070
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2>🎯 Perfil Profissional</h2>
+            <p>Engenheiro Civil pleno com <strong>22+ anos de experiência multidisciplinar</strong> (incluindo 20 anos em TI + Engenharia), especialista em <strong>projetos civis e estruturais, BIM, topografia e gestão de obras</strong>. Combino sólida base técnica com visão sistêmica, precisão analítica e capacidade de integrar tecnologia à engenharia.</p>
+            <div class="profile-text">
+                "Transformo complexidade técnica em soluções executáveis, unindo precisão estrutural com eficiência operacional."
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>⚡ Principais Competências</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Projetos & Estruturas</h3>
+                    <ul>
+                        <li>Projetos Civis e Estruturais</li>
+                        <li>Cálculo Estrutural e Fundações</li>
+                        <li>Sistemas Construtivos</li>
+                        <li>Engenharia Urbana e Loteamentos</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Tecnologia & Gestão</h3>
+                    <ul>
+                        <li>BIM (Revit Estrutural/MEP)</li>
+                        <li>AutoCAD 2021</li>
+                        <li>MS Project</li>
+                        <li>Orçamentos e BDI</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Avaliação & Conformidade</h3>
+                    <ul>
+                        <li>Perícias e Avaliações de Imóveis</li>
+                        <li>Laudos Técnicos e Pareceres</li>
+                        <li>Fiscalização de Obras</li>
+                        <li>Análise de Conformidade</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>💼 Experiência Profissional</h2>
+
+            <div class="experience-item">
+                <div class="exp-header">
+                    <div>
+                        <div class="exp-title">Engenheiro Civil</div>
+                        <div class="exp-company">KM Projetos de Engenharia</div>
+                    </div>
+                    <span class="exp-date">2024 – Presente</span>
+                </div>
+                <div class="exp-location">📍 Conceição do Araguaia, PA</div>
+                <ul class="exp-list">
+                    <li>Desenvolvimento de projetos civis completos, desde concepção até execução</li>
+                    <li>Análises de conformidade, inspeções técnicas e verificações estruturais</li>
+                    <li>Emissão de relatórios técnicos, laudos e pareceres especializados</li>
+                    <li>Apoio técnico integrado a obras e sistemas construtivos</li>
+                </ul>
+                <div class="highlight-box">
+                    <strong>Impacto:</strong> Entrega de projetos com precisão técnica e conformidade normativa, reduzindo retrabalho e otimizando cronogramas.
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="exp-header">
+                    <div>
+                        <div class="exp-title">Especialista em TI & Infraestrutura</div>
+                        <div class="exp-company">Empresas Diversas – GO e PA</div>
+                    </div>
+                    <span class="exp-date">2002 – 2025</span>
+                </div>
+                <div class="exp-location">📍 Goiás e Pará</div>
+                <ul class="exp-list">
+                    <li>Gestão de infraestrutura tecnológica e suporte técnico especializado</li>
+                    <li>Organização de processos e documentação sistêmica</li>
+                </ul>
+                <div class="highlight-box">
+                    <strong>Diferencial:</strong> 20 anos de experiência em TI que reforçam visão lógica, precisão analítica e capacidade sistêmica — competências transferidas diretamente para a engenharia.
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="exp-header">
+                    <div>
+                        <div class="exp-title">Ajudante / Marceneiro</div>
+                        <div class="exp-company">Marcenaria São Carlos</div>
+                    </div>
+                    <span class="exp-date">1993 – 2000</span>
+                </div>
+                <ul class="exp-list">
+                    <li>Execução de peças com medições precisas, cortes técnicos e montagem estrutural</li>
+                    <li>Desenvolvimento de habilidade prática e leitura detalhada de projetos</li>
+                </ul>
+                <div class="highlight-box">
+                    <strong>Base:</strong> Origem da precisão dimensional e execução técnica que caracterizam meu trabalho atual.
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>🎓 Formação Acadêmica</h2>
+            <div class="education-grid">
+                <div class="edu-item">
+                    <span class="edu-year">2023</span>
+                    <div class="edu-degree">Engenharia Civil</div>
+                    <div class="edu-school">FACAP</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>📚 11 Pós-Graduações Concluídas</h2>
+            <div class="post-list">
+                <div class="post-item"><span class="post-number">1</span>Engenharia de Segurança do Trabalho</div>
+                <div class="post-item"><span class="post-number">2</span>Engenharia de Avaliações e Perícias</div>
+                <div class="post-item"><span class="post-number">3</span>Cálculo Estrutural e Fundações</div>
+                <div class="post-item"><span class="post-number">4</span>Projetos Urbanos para Loteamentos</div>
+                <div class="post-item"><span class="post-number">5</span>BIM em Gerenciamento e Qualidade</div>
+                <div class="post-item"><span class="post-number">6</span>Gestão de Projetos</div>
+                <div class="post-item"><span class="post-number">7</span>Topografia e Sensoriamento Remoto</div>
+                <div class="post-item"><span class="post-number">8</span>Sistemas Construtivos</div>
+                <div class="post-item"><span class="post-number">9</span>Desenvolvimento e Gerenciamento de Projetos</div>
+                <div class="post-item"><span class="post-number">10</span>Georreferenciamento de Imóveis Rurais</div>
+                <div class="post-item"><span class="post-number">11</span>Engenharia Sanitária e Ambiental</div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>🚀 2 Pós-Graduações em Andamento</h2>
+            <div class="post-list">
+                <div class="post-item ongoing"><span class="post-number">1</span>Engenharia de Tráfego</div>
+                <div class="post-item ongoing"><span class="post-number">2</span>Logística e Modais de Transportes</div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>📜 Certificações e Cursos</h2>
+            
+            <div class="post-list">
+                <div class="post-item"><span class="post-number">✓</span>3Ds Max e SketchUp para Modelagem 3D</div>
+                <div class="post-item"><span class="post-number">✓</span>AutoCAD 2D (Básico e Avançado) e Desenho Técnico</div>
+                <div class="post-item"><span class="post-number">✓</span>Diagnóstico Estrutural: Perícia e Corrosão das Armaduras</div>
+                <div class="post-item"><span class="post-number">✓</span>Eletrônica Industrial e Projetos Eletrônicos</div>
+                <div class="post-item"><span class="post-number">✓</span>Eletricista Residencial e CFTV</div>
+                <div class="post-item"><span class="post-number">✓</span>Engenharias com Práticas ESG e ODS</div>
+                <div class="post-item"><span class="post-number">✓</span>Estradas, Pavimentação e Alvenaria Estrutural</div>
+                <div class="post-item"><span class="post-number">✓</span>Gerenciamento de Obras na Era Digital com BIM</div>
+                <div class="post-item"><span class="post-number">✓</span>Gestão de Resíduos Sólidos e Gestão Ambiental</div>
+                <div class="post-item"><span class="post-number">✓</span>Instrutor de NR-1: PGR - Programa de Gerenciamento de Riscos</div>
+                <div class="post-item"><span class="post-number">✓</span>Instrutor de NR-4: SESMT</div>
+                <div class="post-item"><span class="post-number">✓</span>Instrutor de NR-6: Equipamentos de Proteção Individual (EPI)</div>
+                <div class="post-item"><span class="post-number">✓</span>Instrutor de NR-8: Edificações</div>
+                <div class="post-item"><span class="post-number">✓</span>Instrutor de NR-10: Segurança em Instalações e Serviços em Eletricidade</div>
+                <div class="post-item"><span class="post-number">✓</span>Instrutor de NR-13: Caldeiras, Vasos de Pressão e Tanques</div>
+                <div class="post-item"><span class="post-number">✓</span>Instrutor de NR-18: Condições e Meio Ambiente na Indústria da Construção</div>
+                <div class="post-item"><span class="post-number">✓</span>Instrutor de NR-33: Segurança em Espaços Confinados</div>
+                <div class="post-item"><span class="post-number">✓</span>Instrutor de NR-35: Trabalho em Altura</div>               
+                <div class="post-item"><span class="post-number">✓</span>Inteligência Artificial para Engenheiro Civil</div>
+                <div class="post-item"><span class="post-number">✓</span>Licenciamento Ambiental e Avaliação de Impacto</div>
+                <div class="post-item"><span class="post-number">✓</span>Mecânica dos Solos e Fundações</div>
+                <div class="post-item"><span class="post-number">✓</span>Noções Básicas da Gestão e Fiscalização de Obras Públicas</div>
+                <div class="post-item"><span class="post-number">✓</span>Operador de Tratamento de Águas e Efluentes</div>
+                <div class="post-item"><span class="post-number">✓</span>Orçamento de Obras de Infraestrutura e Cálculo do BDI</div>
+                <div class="post-item"><span class="post-number">✓</span>Perícia Judicial em Engenharia - Laudo Pericial</div>
+                <div class="post-item"><span class="post-number">✓</span>Primeiros Socorros e Ergonomia</div>
+                <div class="post-item"><span class="post-number">✓</span>Projeto Estrutural no Software CYPECAD</div>
+                <div class="post-item"><span class="post-number">✓</span>Revit Estrutural (Modelagem MEP) e Revit Arquitetônico</div>
+                <div class="post-item"><span class="post-number">✓</span>Técnicas de Negociação nas Engenharias</div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>⭐ Diferenciais Competitivos</h2>
+            <div class="differentials">
+                <div class="diff-item">
+                    <span class="diff-icon">🎯</span>
+                    <span class="diff-text"><strong>Multiespecialista técnico</strong> — 9 pós-graduações concluídas + 6 em andamento</span>
+                </div>
+                <div class="diff-item">
+                    <span class="diff-icon">💻</span>
+                    <span class="diff-text"><strong>Fusão Engenharia + Tecnologia</strong> — 20 anos de TI aplicados à precisão técnica</span>
+                </div>
+                <div class="diff-item">
+                    <span class="diff-icon">📐</span>
+                    <span class="diff-text"><strong>Domínio completo do ciclo de projeto</strong> — da concepção à entrega final</span>
+                </div>
+                <div class="diff-item">
+                    <span class="diff-icon">🏗️</span>
+                    <span class="diff-text"><strong>BIM e modelagem avançada</strong> — Revit Estrutural e MEP</span>
+                </div>
+                <div class="diff-item">
+                    <span class="diff-icon">🧠</span>
+                    <span class="diff-text"><strong>Capacidade analítica superior</strong> — formada em resolução de problemas complexos</span>
+                </div>
+                <div class="diff-item">
+                    <span class="diff-icon">📈</span>
+                    <span class="diff-text"><strong>Atualização contínua</strong> — profissional em constante evolução técnica</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section objective">
+            <h2>🎯 Objetivo Profissional</h2>
+            <p>Atuar em <strong>projetos civis e estruturais de média e alta complexidade</strong>, contribuindo com expertise em modelagem BIM, análises técnicas, fiscalização e gestão de obras. Busco oportunidades que valorizem <strong>excelência técnica, inovação e resultados mensuráveis</strong>.</p>
+        </section>
+
+        <footer>
+            <p>Conceição do Araguaia, PA — 2026</p>
+            <p style="margin-top: 10px; font-size: 0.85em;">Currículo desenvolvido com foco em resultados e inovação técnica</p>
+        </footer>
+    </div>
+</body>
+</html>

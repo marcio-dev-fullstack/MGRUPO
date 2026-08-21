@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MGRUPO - Engenharias | Tecnologias | Educação | Concursos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            overflow-y: auto;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        canvas {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 100%;
+            max-width: 440px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 6rem;
+            color: #00ff41;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            margin: 0 0 30px 0;
+            padding: 0;
+            text-shadow: 0 0 20px #00ff41, 0 0 40px #00ff41;
+            animation: flicker 1.5s infinite alternate;
+            user-select: none;
+        }
+
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                opacity: 1;
+                text-shadow: 0 0 20px #00ff41, 0 0 40px #00ff41;
+            }
+            20%, 24%, 55% {
+                opacity: 0.3;
+                text-shadow: none;
+            }
+        }
+
+        /* ---- CONTAINER DE LINKS ---- */
+        .links-wrapper-custom {
+            display: flex;
+            flex-direction: column;
+            gap: 14px; 
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .btn-custom {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 16px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff !important;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+            transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        /* Variação Laranja */
+        .btn-orange {
+            background-color: #FF8C00;
+        }
+        .btn-orange:hover {
+            background-color: #e07b00;
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(255, 140, 0, 0.5);
+        }
+
+        /* Variação Azul */
+        .btn-blue {
+            background-color: #007BFF;
+        }
+        .btn-blue:hover {
+            background-color: #0056b3;
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0, 123, 255, 0.5);
+        }
+
+        /* Botão do WhatsApp Estilo Oficial */
+        .btn-whatsapp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 16px 20px;
+            margin-top: 6px;
+            background-color: #25D366; 
+            color: #ffffff !important;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+            transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        .btn-whatsapp i {
+            font-size: 22px;
+        }
+        .btn-whatsapp:hover {
+            background-color: #20ba5a;
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(37, 211, 102, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 4rem;
+                letter-spacing: 6px;
+                margin-bottom: 25px;
+            }
+            .btn-custom, .btn-whatsapp {
+                font-size: 15px;
+                padding: 14px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="matrix"></canvas>
+
+    <div class="container">
+        <h1>MGRUPO</h1>
+
+        <div class="links-wrapper-custom">
+            <a href="https://mgrupo.online/KM-Projetos/index.html" target="_blank" class="btn-custom btn-orange">KM PROJETOS & ENGENHARIA</a>
+            <a href="https://mgrupo.online/RAZGO-Tecnologia/index.html" target="_blank" class="btn-custom btn-blue">RAZGO TECNOLOGIA</a>
+            <a href="https://mgrupo.online/MAZZ-Cursos/index.html" target="_blank" class="btn-custom btn-orange">MAZZ CURSOS</a>
+            <a href="https://mgrupo.online/MR-Treinamentos/index.html" target="_blank" class="btn-custom btn-blue">MR TREINAMENTOS</a>
+            <a href="https://mgrupo.online/CDA-LISTA/index.html" target="_blank" class="btn-custom btn-orange">CDA TELELISTA</a>
+            
+            <a href="https://wa.me/5562996466033" target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Fale conosco pelo WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズヅブプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        const alphabet = katakana + latin + nums;
+
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+
+        const rainDrops = [];
+
+        for (let x = 0; x < columns; x++) {
+            rainDrops[x] = 1;
+        }
+
+        const draw = () => {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00ff41';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < rainDrops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            }
+        };
+
+        setInterval(draw, 30);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>

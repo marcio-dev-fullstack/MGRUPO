@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>MAZZ - TECNOLOGIA</title>
+    <style>
+      :root {
+        --matrix-green: #00ff41;
+        --dark-bg: #0d0208;
+        --card-bg: rgba(0, 40, 0, 0.2);
+        --glow: 0 0 15px rgba(0, 255, 65, 0.6);
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background-color: var(--dark-bg);
+        color: var(--matrix-green);
+        font-family: "Courier New", Courier, monospace;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      body::before {
+        content: " ";
+        display: block;
+        position: fixed;
+        top: 0; left: 0; bottom: 0; right: 0;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                    linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+        z-index: 2000;
+        background-size: 100% 4px, 3px 100%;
+        pointer-events: none;
+      }
+      #matrix-canvas {
+        position: fixed;
+        top: 0; left: 0; z-index: -1;
+        opacity: 0.25;
+      }
+      nav {
+        background: rgba(0, 0, 0, 0.9);
+        border-bottom: 2px solid var(--matrix-green);
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0; z-index: 1000;
+        box-shadow: var(--glow);
+      }
+      .nav-brand { font-weight: bold; font-size: 1.4rem; text-shadow: var(--glow); letter-spacing: 2px; }
+      .nav-links a {
+        color: var(--matrix-green);
+        text-decoration: none;
+        font-weight: bold;
+        padding: 8px 15px;
+        border: 1px solid transparent;
+        transition: all 0.3s;
+        text-transform: uppercase;
+      }
+      .nav-links a:hover {
+        border: 1px solid var(--matrix-green);
+        box-shadow: var(--glow);
+        background: rgba(0, 255, 65, 0.1);
+      }
+      header { text-align: center; padding: 40px 15px; }
+      header h1 {
+        font-size: clamp(1.8rem, 8vw, 3rem);
+        letter-spacing: 5px;
+        text-shadow: var(--glow);
+        margin-bottom: 10px;
+      }
+      .section-title {
+        grid-column: 1 / -1;
+        text-align: left;
+        font-size: 1.5rem;
+        border-left: 5px solid var(--matrix-green);
+        padding-left: 15px;
+        margin: 30px 0 10px 0;
+        text-transform: uppercase;
+        background: rgba(0, 255, 65, 0.05);
+      }
+      .container {
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        flex-grow: 1;
+      }
+      .course-card {
+        background: var(--card-bg);
+        border: 1px solid var(--matrix-green);
+        border-radius: 5px;
+        padding: 20px;
+        backdrop-filter: blur(8px);
+        display: flex;
+        flex-direction: column;
+        transition: all 0.3s ease;
+      }
+      .course-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--glow);
+        background: rgba(0, 60, 0, 0.3);
+      }
+      .category-tag {
+        font-size: 0.6rem;
+        background: var(--matrix-green);
+        color: var(--dark-bg);
+        padding: 2px 6px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        align-self: flex-start;
+      }
+      .course-card h2 {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+        color: #fff;
+        border-bottom: 1px solid rgba(0, 255, 65, 0.3);
+        padding-bottom: 8px;
+        text-transform: uppercase;
+      }
+      .details { font-size: 0.8rem; margin-bottom: 15px; }
+      .details b { color: #fff; }
+      .module-item {
+        font-size: 0.75rem;
+        margin-bottom: 6px;
+        padding-left: 10px;
+        border-left: 2px solid var(--matrix-green);
+      }
+      .btn-action {
+        margin-top: auto;
+        background: transparent;
+        border: 1px solid var(--matrix-green);
+        color: var(--matrix-green);
+        padding: 12px;
+        text-align: center;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s;
+        text-transform: uppercase;
+      }
+      .btn-action:hover { background: var(--matrix-green); color: var(--dark-bg); }
+      footer {
+        text-align: center;
+        padding: 30px;
+        font-size: 0.75rem;
+        background: rgba(0, 0, 0, 0.9);
+        border-top: 2px solid var(--matrix-green);
+        margin-top: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="matrix-canvas"></canvas>
+    <nav>
+      <div class="nav-brand">MAZZ - SEU FUTURO COMEÇA AQUI</div>
+      <div class="nav-links">
+        <a href="index.html">INÍCIO</a>
+        <a href="marcio.html" target="_blank">PROFESSOR</a>
+      </div>
+    </nav>
+    <header>
+      <h1>CENTRAL DE TREINAMENTO</h1>
+      <p>> 40 Módulos de Programação e Dados Carregados...</p>
+    </header>
+
+    <div class="container" id="grid">
+      <div class="section-title">01. Protocolos de Programação (Code)</div>
+      </div>
+
+    <footer><h3>&copy; 2026 MAZZ. Todos os direitos reservados <br>
+      Goiânia-GO | (62) 99646-6033</h3>
+    </footer>
+
+    <script>
+      const canvas = document.getElementById("matrix-canvas");
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const chars = "010101ABCDEFHIJKLMNOPQRSTUVWXYZ";
+      const fontSize = 16;
+      const columns = canvas.width / fontSize;
+      const drops = Array(Math.floor(columns)).fill(1);
+      function draw() {
+        ctx.fillStyle = "rgba(13, 2, 8, 0.05)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#00ff41";
+        ctx.font = fontSize + "px monospace";
+        for (let i = 0; i < drops.length; i++) {
+          const text = chars[Math.floor(Math.random() * chars.length)];
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+          drops[i]++;
+        }
+      }
+      setInterval(draw, 35);
+
+      const cursosCode = [
+        { cat: "JAVA", t: "Java Moderno Profissional", m: ["POO Avançada", "Spring Boot 3", "Hibernate/JPA", "Microsserviços", "Unit Testing"] },
+        { cat: "PYTHON", t: "Python Full Stack", m: ["Sintaxe Core", "Django Framework", "Flask APIs", "Automação", "Data Scraping"] },
+        { cat: "JS", t: "JS Ninja: ES6 ao Node", m: ["Promises & Async", "Manipulação de DOM", "V8 Engine", "Web APIs", "Design Patterns"] },
+        { cat: "HTML/CSS", t: "Interface Web Avançada", m: ["HTML5 Semântico", "CSS Grid & Flexbox", "SASS/SCSS", "Animações CSS", "Mobile First"] },
+        { cat: "FLUTTER", t: "Mobile com Flutter/Dart", m: ["Widgets Customizados", "State Management", "Firebase Integration", "Clean Arch", "Native Modules"] },
+        { cat: "PHP", t: "PHP 8 e Laravel 11", m: ["Laravel Core", "Blade Engine", "Eloquent ORM", "API Restful", "Filas e Jobs"] },
+        { cat: "REACT", t: "React.js Ecosystem", m: ["Hooks & Context", "Next.js 15", "Redux Toolkit", "Styled Components", "Server Actions"] },
+        { cat: "NODE.JS", t: "Backend Scalable Node", m: ["Express Framework", "Middleware", "Streams & Buffer", "JWT Auth", "Fastify"] },
+        { cat: "C#", t: "Ecossistema .NET 9", m: ["C# Avançado", "ASP.NET Core", "Entity Framework", "Azure Services", "LINQ"] },
+        { cat: "TYPESCRIPT", t: "TypeScript de Alto Nível", m: ["Generics", "Interfaces & Types", "Strict Typing", "Decorators", "TS com React"] },
+        { cat: "GO", t: "Go (Golang) para Devs", m: ["Goroutines", "Interfaces", "Canais de Dados", "Microservices", "Concurrency"] },
+        { cat: "RUBY", t: "Ruby on Rails Moderno", m: ["Ruby Core", "MVC Pattern", "Active Record", "Hotwire", "Sidekiq"] },
+        { cat: "C++", t: "Programação C++ Performance", m: ["Memory Management", "Pointers", "STL Library", "Multithreading", "Game Dev Intro"] },
+        { cat: "SWIFT", t: "Desenvolvimento iOS", m: ["SwiftUI", "Combine Framework", "Core Data", "App Store Deploy", "Concurrency"] },
+        { cat: "KOTLIN", t: "Android Nativo com Kotlin", m: ["Jetpack Compose", "Coroutines", "Ktor", "Dagger Hilt", "Room Database"] },
+        { cat: "RUST", t: "Segurança com Rust", m: ["Ownership & Borrowing", "Cargo Package", "Wasm", "Safety Memory", "Systems Dev"] },
+        { cat: "VUE.JS", t: "Vue.js 3 e Pinia", m: ["Composition API", "Pinia Store", "Nuxt.js", "Vite Tooling", "Teleport"] },
+        { cat: "PHP", t: "PHP Senior: Arquitetura", m: ["Domain Driven Design", "Refatoração", "Padrões PSR", "Testes Unitários", "Security"] },
+        { cat: "JS", t: "NestJS para Backend", m: ["Dependency Injection", "TypeORM", "Swagger Docs", "Microservices", "Event Driven"] },
+        { cat: "CSS", t: "Tailwind CSS Profissional", m: ["Utility-First", "Custom Config", "Responsive Design", "PurgeCSS", "Dark Mode"] }
+      ];
+
+      const cursosData = [
+        { cat: "SQL", t: "PostgreSQL DBA Master", m: ["Arquitetura Interna", "Performance Tuning", "Replicação e HA", "Backup & Recovery", "Stored Procedures"] },
+        { cat: "SQL", t: "MySQL 8.x para Experts", m: ["InnoDB Engine", "Query Optimization", "Sharding", "Security Hardening", "Clustering"] },
+        { cat: "SQL", t: "SQL Server Administration", m: ["AlwaysOn Availability", "TSQL Avançado", "Indexing Strategies", "Azure SQL Hybrid", "Auditoria"] },
+        { cat: "SQL", t: "Oracle Database 23c", m: ["Multitenant Arch", "PL/SQL Expert", "Data Guard", "Oracle Cloud (OCI)", "RMAN Recovery"] },
+        { cat: "SQL", t: "MariaDB Enterprise", m: ["ColumnStore", "Galera Cluster", "MaxScale Proxy", "Database Security", "JSON Functions"] },
+        { cat: "NOSQL", t: "MongoDB: Do Zero ao Cluster", m: ["Data Modeling", "Aggregation", "Sharding", "Atlas Cloud", "Security"] },
+        { cat: "NOSQL", t: "Redis: Cache & Realtime", m: ["Data Structures", "Persistence", "Pub/Sub Systems", "Redis Sentinel", "Scalability"] },
+        { cat: "NOSQL", t: "Cassandra: Big Data Arch", m: ["LSM Trees", "Partitioning", "CQL", "Multi-datacenter", "Compaction"] },
+        { cat: "NOSQL", t: "Elasticsearch Expert", m: ["Full-Text Search", "Inverted Index", "Kibana", "Cluster Health", "Logstash"] },
+        { cat: "NOSQL", t: "Neo4j: Grafos", m: ["Cypher Language", "Graph Modeling", "Pathfinding", "APOC Library", "Graph Data Science"] },
+        { cat: "NOSQL", t: "DynamoDB (AWS Native)", m: ["Single Table Design", "LSI & GSI", "Streams & Triggers", "On-Demand Scaling", "DAX Caching"] },
+        { cat: "NOSQL", t: "Couchbase Admin", m: ["Memory-First Arch", "N1QL SQL", "Sync Gateway", "XDCR Replication", "Full-Text Search"] },
+        { cat: "IA_DATA", t: "Vector Databases (IA)", m: ["Pinecone & Milvus", "Embedding Storage", "Similarity Search", "RAG Systems", "LangChain"] },
+        { cat: "IA_DATA", t: "Weaviate: AI Database", m: ["Vectorization", "Semantic Search", "GraphQL", "Cloud Managed", "Modules"] },
+        { cat: "CLOUD", t: "Google BigQuery Master", m: ["Data Warehousing", "Serverless SQL", "ML inside BigQuery", "Slot Management", "Optimization"] },
+        { cat: "CLOUD", t: "Snowflake Cloud Data", m: ["Virtual Warehouses", "Data Sharing", "Zero-Copy Cloning", "Time Travel", "SnowSQL"] },
+        { cat: "NEWSQL", t: "CockroachDB: Global SQL", m: ["Distributed SQL", "Survivability", "Raft Consensus", "Geo-Partitioning", "Postgres Syntax"] },
+        { cat: "NEWSQL", t: "ScyllaDB: Ultra Performance", m: ["Shared-Nothing Arch", "C++ Engine", "Auto-sharding", "Seastar Framework", "Cassandra Comp."] },
+        { cat: "DBA", t: "Database Tuning", m: ["Execution Plans", "Wait Events", "IO Latency", "Memory Allocation", "Concurrency"] },
+        { cat: "DBA", t: "Segurança (LGPD)", m: ["Data Masking", "Encryption", "Access Control", "Vulnerability Scan", "Compliance"] }
+      ];
+
+      const grid = document.getElementById("grid");
+
+      // Função para renderizar cursos
+      function renderCursos(lista, prefixo) {
+        lista.forEach((c, idx) => {
+          const div = document.createElement("div");
+          div.className = "course-card";
+          div.innerHTML = `
+                  <div class="category-tag">${c.cat}</div>
+                  <h2>${c.t}</h2>
+                  <div class="details">Status: <b>ATIVO</b> | Carga: <b>40H</b></div>
+                  ${c.m.map((mod, i) => `<div class="module-item">${prefixo}_${i + 1}: ${mod}</div>`).join("")}
+                  <a href="https://wa.me/5562996466033" class="btn-action">COMPRAR</a>
+              `;
+          grid.appendChild(div);
+        });
+      }
+
+      // Renderiza Programação
+      renderCursos(cursosCode, "CODE");
+
+      // Adiciona Título Seção 2
+      const secData = document.createElement("div");
+      secData.className = "section-title";
+      secData.innerText = "02. Protocolos de Banco de Dados (Data)";
+      grid.appendChild(secData);
+
+      // Renderiza Banco de Dados
+      renderCursos(cursosData, "DATA");
+    </script>
+  </body>
+</html>
