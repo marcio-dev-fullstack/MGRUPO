@@ -129,10 +129,18 @@
             pointer-events: none;
         }
 
+        /* Estilo da Logo Central */
+        .cert-logo {
+            max-width: 200px;
+            height: auto;
+            margin: 0 auto 10px auto;
+            display: block;
+        }
+
         /* Frente */
         .cert-header {
             text-align: center;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         .cert-header h1 {
@@ -332,8 +340,11 @@
             <div class="border-frame"></div>
             
             <div class="cert-header">
-                <h1>MAZZ Cursos e Capacitações</h1>
-                <p>Certificado de Conclusão de Curso</p>
+                <!-- Logo Central -->
+                <img src="022.png" alt="MAZZ Logo" class="cert-logo">
+		<p>Cursos e Capacitações</p>
+		<br>
+                <h1>Certificado de Conclusão de Curso</h1>
             </div>
 
             <div class="cert-body">
@@ -369,6 +380,8 @@
             <div class="border-frame"></div>
 
             <div>
+                <!-- Logo Central Verso -->
+                <img src="022.png" alt="MAZZ Logo" class="cert-logo" style="max-width: 140px;">
                 <h2 class="verso-title">Conteúdo Programático / Ementa</h2>
                 <div class="verso-info">
                     <p><strong>Curso:</strong> <span id="outCursoVerso">Especialização em Gestão de Segurança do Trabalho</span></p>
