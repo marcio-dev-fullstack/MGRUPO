@@ -1,249 +1,222 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KM Projetos & Engenharia</title>
-    <!-- Tailwind CSS & FontAwesome -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>MGRUPO - Engenharias | Tecnologias | Educação | Concursos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .bg-hero {
-            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?q=80&w=1200') center/cover;
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            overflow-y: auto;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        canvas {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 100%;
+            max-width: 440px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 6rem;
+            color: #00ff41;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            margin: 0 0 30px 0;
+            padding: 0;
+            text-shadow: 0 0 20px #00ff41, 0 0 40px #00ff41;
+            animation: flicker 1.5s infinite alternate;
+            user-select: none;
+        }
+
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                opacity: 1;
+                text-shadow: 0 0 20px #00ff41, 0 0 40px #00ff41;
+            }
+            20%, 24%, 55% {
+                opacity: 0.3;
+                text-shadow: none;
+            }
+        }
+
+        /* ---- CONTAINER DE LINKS ---- */
+        .links-wrapper-custom {
+            display: flex;
+            flex-direction: column;
+            gap: 14px; 
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .btn-custom {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 16px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff !important;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+            transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        /* Variação Laranja */
+        .btn-orange {
+            background-color: #FF8C00;
+        }
+        .btn-orange:hover {
+            background-color: #e07b00;
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(255, 140, 0, 0.5);
+        }
+
+        /* Variação Azul */
+        .btn-blue {
+            background-color: #007BFF;
+        }
+        .btn-blue:hover {
+            background-color: #0056b3;
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0, 123, 255, 0.5);
+        }
+
+        /* Botão do WhatsApp Estilo Oficial */
+        .btn-whatsapp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 16px 20px;
+            margin-top: 6px;
+            background-color: #25D366; 
+            color: #ffffff !important;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+            transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        .btn-whatsapp i {
+            font-size: 22px;
+        }
+        .btn-whatsapp:hover {
+            background-color: #20ba5a;
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(37, 211, 102, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 4rem;
+                letter-spacing: 6px;
+                margin-bottom: 25px;
+            }
+            .btn-custom, .btn-whatsapp {
+                font-size: 15px;
+                padding: 14px 15px;
+            }
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans">
+<body>
 
-    <!-- NAVEGAÇÃO -->
-    <nav class="bg-slate-900 text-white sticky top-0 z-50 shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold tracking-wider text-amber-500">
-                <i class="fa-solid fa-compass-drafting mr-2"></i>KM <span class="text-white text-base font-normal">| Projetos & Engenharia</span>
-            </div>
-            <div class="hidden md:flex space-x-6 text-sm font-semibold uppercase">
-                <a href="#sobre" class="hover:text-amber-500 transition">Sobre</a>
-                <a href="#servicos" class="hover:text-amber-500 transition">Serviços</a>
-                <a href="#portfolio" class="hover:text-amber-500 transition">Portfólio</a>
-                <a href="#equipe" class="hover:text-amber-500 transition">Equipe Técnica</a>
-                <a href="#contato" class="hover:text-amber-500 transition">Contato</a>
-            </div>
-            <a href="https://wa.me/5565996108749" target="_blank" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-4 py-2 rounded-lg text-sm transition flex items-center gap-2">
-                <i class="fa-brands fa-whatsapp text-lg"></i> (65) 99610-8749
-            </a>
-        </div>
-    </nav>
+    <canvas id="matrix"></canvas>
 
-    <!-- HERO SECTION -->
-    <header class="bg-hero text-white py-24 text-center px-4">
-        <div class="max-w-4xl mx-auto">
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-4">Transformamos Ideias em Estruturas Sólidas</h1>
-            <p class="text-lg md:text-xl text-slate-300 mb-8">Especialistas em galpões, unidades armazenadoras, sobrados, casas unifamiliares, cálculo estrutural e execução de obras.</p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#servicos" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-6 py-3 rounded-lg text-lg transition">Nossos Serviços</a>
-                <a href="https://wa.me/5565996108749" target="_blank" class="border border-white hover:bg-white hover:text-slate-900 font-bold px-6 py-3 rounded-lg text-lg transition flex items-center justify-center gap-2">
-                    <i class="fa-brands fa-whatsapp text-xl"></i> Solicitar Orçamento
-                </a>
-            </div>
-        </div>
-    </header>
+    <div class="container">
+        <h1>MGRUPO</h1>
 
-    <!-- SOBRE -->
-    <section id="sobre" class="py-16 max-w-7xl mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-                <h2 class="text-3xl font-bold text-slate-900 mb-4">Sobre a KM Projetos & Engenharia</h2>
-                <p class="text-slate-600 mb-4 leading-relaxed">
-                    Somos uma empresa especializada em desenvolvimento de projetos estruturais, arquitetônicos e gerenciamento de obras residenciais, comerciais e do agronegócio.
-                </p>
-                <p class="text-slate-600 leading-relaxed">
-                    Focados em inovação, eficiência e segurança, utilizamos tecnologia BIM e cálculos avançados para entregar soluções otimizadas e sustentáveis para o seu empreendimento.
-                </p>
-            </div>
-            <div class="rounded-xl overflow-hidden shadow-lg">
-                <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800" alt="Sobre a KM Projetos" class="w-full h-80 object-cover">
-            </div>
-        </div>
-    </section>
-
-    <!-- SERVIÇOS -->
-    <section id="servicos" class="py-16 bg-slate-100 border-t border-slate-200">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-slate-900 mb-12">Nossas Especialidades</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-amber-500 hover:shadow-lg transition">
-                    <i class="fa-solid fa-warehouse text-4xl text-amber-500 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">Galpões & Estruturas Metálicas</h3>
-                    <p class="text-slate-600 text-sm">Dimensionamento e detalhamento de coberturas, vãos livres, estruturas metálicas e pré-moldadas.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-amber-500 hover:shadow-lg transition">
-                    <i class="fa-solid fa-wheat-awn text-4xl text-amber-500 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">Engenharia Agroindustrial</h3>
-                    <p class="text-slate-600 text-sm">Projetos de fundação e base para secadores, silos, moegas e infraestrutura de armazenagem.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-amber-500 hover:shadow-lg transition">
-                    <i class="fa-solid fa-house-chimney-window text-4xl text-amber-500 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">Projetos Residenciais</h3>
-                    <p class="text-slate-600 text-sm">Projetos arquitetônicos, estruturais e instalações em BIM para sobrados e casas unifamiliares.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PORTFÓLIO -->
-    <section id="portfolio" class="py-16">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-slate-900 mb-2">Nosso Portfólio</h2>
-                <p class="text-slate-600">Confira alguns dos principais projetos industriais, agrícolas e residenciais desenvolvidos pela KM Projetos & Engenharia.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition group">
-                    <div class="overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800" alt="Galpão Industrial" class="w-full h-56 object-cover group-hover:scale-105 transition duration-500">
-                    </div>
-                    <div class="p-6">
-                        <span class="inline-block bg-amber-100 text-amber-800 text-xs font-semibold px-2.5 py-0.5 rounded mb-2">Industrial / Logística</span>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Galpão Comercial & Logístico - 1.500m²</h3>
-                        <p class="text-slate-600 text-sm mb-4">Projeto estrutural com vãos livres em estrutura metálica, piso industrial de alta resistência e docas.</p>
-                        <span class="text-xs text-slate-500"><i class="fa-solid fa-location-dot mr-1"></i>Distrito Industrial</span>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition group">
-                    <div class="overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=800" alt="Secadores e Silos Agrícolas" class="w-full h-56 object-cover group-hover:scale-105 transition duration-500">
-                    </div>
-                    <div class="p-6">
-                        <span class="inline-block bg-amber-100 text-amber-800 text-xs font-semibold px-2.5 py-0.5 rounded mb-2">Agronegócio</span>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Base para Secadores & Silos de Grãos</h3>
-                        <p class="text-slate-600 text-sm mb-4">Dimensionamento de fundações profundas, bases para secadores de grãos e moegas de recepção.</p>
-                        <span class="text-xs text-slate-500"><i class="fa-solid fa-location-dot mr-1"></i>Unidade Armazenadora</span>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition group">
-                    <div class="overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800" alt="Sobrado de Alto Padrão" class="w-full h-56 object-cover group-hover:scale-105 transition duration-500">
-                    </div>
-                    <div class="p-6">
-                        <span class="inline-block bg-amber-100 text-amber-800 text-xs font-semibold px-2.5 py-0.5 rounded mb-2">Residencial</span>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Sobrado Contemporâneo - 320m²</h3>
-                        <p class="text-slate-600 text-sm mb-4">Projeto arquitetônico e cálculo de estrutura de concreto armado com grandes balanços e conceito aberto.</p>
-                        <span class="text-xs text-slate-500"><i class="fa-solid fa-location-dot mr-1"></i>Condomínio Fechado</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- EQUIPE TÉCNICA -->
-    <section id="equipe" class="py-16 bg-slate-100 border-t border-slate-200">
-        <div class="max-w-5xl mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-slate-900 mb-2">Equipe Técnica Multidisciplinar</h2>
-                <p class="text-slate-600">Conheça nossos profissionais especialistas responsáveis pela gestão e execução dos projetos.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                
-                <!-- MÁRCIO OLIVEIRA (DESTAQUE LINHA ÚNICA) -->
-                <div class="md:col-span-2 bg-white p-8 rounded-xl shadow-md border-2 border-amber-500 hover:shadow-xl transition flex flex-col md:flex-row items-center justify-between gap-6">
-                    <div class="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
-                        <img src="img/marcio.jpg" alt="Márcio Oliveira" class="w-32 h-32 rounded-full object-cover border-4 border-amber-500 shadow">
-                        <div>
-                            <span class="inline-block bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-0.5 rounded mb-1">Destaque Técnico</span>
-                            <h3 class="text-2xl font-bold text-slate-900">Márcio Rodrigues de Oliveira</h3>
-                            <ul class="text-slate-600 text-sm my-2 space-y-1">
-                                <li><i class="fas fa-check-circle text-amber-500 mr-1"></i> Engenheiro Civil</li>
-                                <li><i class="fas fa-check-circle text-amber-500 mr-1"></i> Engenheiro de Tráfego<li>  
-                                <li><i class="fas fa-check-circle text-amber-500 mr-1"></i> Engenheiro de Software</li>                                  
-                                <li><i class="fas fa-check-circle text-amber-500 mr-1"></i> Engenheiro de Segurança do Trabalho</li>  
-                                <li><i class="fas fa-check-circle text-amber-500 mr-1"></i> Mestrando em Administraçãso (Inteligência Artificial)</li>
-                            </ul>
-                            <span class="inline-block bg-slate-900 text-amber-500 font-mono text-xs px-3 py-1 rounded-md font-semibold">CREA-MT: 61810</span>
-                        </div>
-                    </div>
-                    <div>
-                        <a href="https://mgrupo.online/CURRICULOS/ENG-marcio.html" target="_blank" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-5 py-3 rounded-lg text-sm transition flex items-center justify-center gap-2 shadow">
-                            <i class="fas fa-globe"></i> Visualizar Currículo
-                        </a>
-                    </div>
-                </div>
-
-                <!-- KÉSIA QUADROS -->
-                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition text-center flex flex-col items-center">
-                    <img src="img/kesia.jpeg" alt="Késia Quadros" class="w-28 h-28 rounded-full object-cover mb-4 border-4 border-amber-500 shadow">
-                    <h3 class="text-xl font-bold text-slate-900">Késia Quadros</h3>
-                    <ul class="text-slate-600 text-sm my-3 space-y-1">
-                        <li><i class="fas fa-check-circle text-amber-500 mr-1"></i> Geógrafa</li>
-                        <li><i class="fas fa-check-circle text-amber-500 mr-1"></i> Gestora Ambiental</li>
-                        <li><i class="fas fa-check-circle text-amber-500 mr-1"></i> Engenheira Ambiental e Sanitarista (CURSANDO 4º ANO)</li>
-                    </ul>
-                    <span class="mt-auto bg-slate-900 text-amber-500 font-mono text-xs px-3 py-1.5 rounded-md font-semibold">CREA-PA: 1523268603</span>
-                </div>
-
-                <!-- AILTON BARTOLOMEU -->
-                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition text-center flex flex-col items-center">
-                    <img src="img/ailton.jpg" alt="Ailton Bartolomeu" class="w-28 h-28 rounded-full object-cover mb-4 border-4 border-amber-500 shadow">
-                    <h3 class="text-xl font-bold text-slate-900">Ailton Bartolomeu</h3>
-                    <ul class="text-slate-600 text-sm my-3 space-y-1">
-                        <li><i class="fas fa-check-circle text-amber-500 mr-1"></i> Engenheiro Sanitarista</li>
-                        <li><i class="fas fa-check-circle text-amber-500 mr-1"></i> Engenheiro de Segurança do Trabalho</li>
-                    </ul>
-                    <span class="mt-auto bg-slate-900 text-amber-500 font-mono text-xs px-3 py-1.5 rounded-md font-semibold">CREA-PA: 1504369246</span>
-                </div>
-
-                <!-- ALEXSANDRO WEECK -->
-                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition text-center flex flex-col items-center">
-                    <img src="img/alex.jpeg" alt="Alexsandro Weeck" class="w-28 h-28 rounded-full object-cover mb-4 border-4 border-amber-500 shadow">
-                    <h3 class="text-xl font-bold text-slate-900">Alexsandro Weeck</h3>
-                    <ul class="text-slate-600 text-sm my-3 space-y-1">
-                        <li><i class="fas fa-check-circle text-amber-500 mr-1"></i> Arquiteto</li>
-                        <li><i class="fas fa-check-circle text-amber-500 mr-1"></i> Engenheiro Civil</li>
-                        <li><i class="fas fa-check-circle text-amber-500 mr-1"></i> Engenheiro de Produção</li>
-                        <li><i class="fas fa-check-circle text-amber-500 mr-1"></i> Engenheiro de Segurança do Trabalho</li>
-                    </ul>
-                    <div class="mt-auto flex flex-wrap justify-center gap-1">
-                        <span class="bg-slate-900 text-amber-500 font-mono text-xs px-3 py-1 rounded-md font-semibold">CAU-RS: A3222187</span>
-                        <span class="bg-slate-900 text-amber-500 font-mono text-xs px-3 py-1 rounded-md font-semibold">CREA-RS: 271200</span>
-                    </div>
-                </div>
-
-                <!-- MARCOS FONTEALBA -->
-                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition text-center flex flex-col items-center">
-                    <img src="img/marcos.jpeg" alt="Marcos Fontealba" class="w-28 h-28 rounded-full object-cover mb-4 border-4 border-amber-500 shadow">
-                    <h3 class="text-xl font-bold text-slate-900">Marcos Fontealba</h3>
-                    <ul class="text-slate-600 text-sm my-3 space-y-1">
-                        <li><i class="fas fa-check-circle text-amber-500 mr-1"></i> Engenheiro Civil</li>
-                        <li><i class="fas fa-check-circle text-amber-500 mr-1"></i> Engenheiro Mecânico</li>
-                        <li><i class="fas fa-check-circle text-amber-500 mr-1"></i> Engenheiro de Segurança do Trabalho</li>
-                    </ul>
-                    <span class="mt-auto bg-slate-900 text-amber-500 font-mono text-xs px-3 py-1.5 rounded-md font-semibold">CREA-SP: 5069309345</span>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- RODAPÉ -->
-    <footer id="contato" class="bg-slate-900 text-white py-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <h3 class="text-2xl font-bold mb-2">Quer dar vida ao seu projeto?</h3>
-            <p class="text-slate-400 mb-2">Entre em contato conosco e solicite uma avaliação técnica ou orçamento sem compromisso.</p>
-            <p class="text-slate-400 mb-6 text-sm"><i class="fa-solid fa-envelope text-amber-500 mr-1"></i> kmprojetos.eng@gmail.com</p>
+        <div class="links-wrapper-custom">
+            <a href="https://mgrupo.online/KM-Projetos/index.html" target="_blank" class="btn-custom btn-orange">KM PROJETOS & ENGENHARIA</a>
+            <a href="https://mgrupo.online/RAZGO-Tecnologia/index.html" target="_blank" class="btn-custom btn-blue">RAZGO TECNOLOGIA</a>
+            <a href="https://mgrupo.online/MAZZ-Cursos/index.html" target="_blank" class="btn-custom btn-orange">MAZZ CURSOS</a>
+            <a href="https://mgrupo.online/MR-Treinamentos/index.html" target="_blank" class="btn-custom btn-blue">MR TREINAMENTOS</a>
+            <a href="https://mgrupo.online/CDA-LISTA/index.html" target="_blank" class="btn-custom btn-orange">CDA TELELISTA</a>
             
-            <a href="https://wa.me/5565996108749" target="_blank" class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-6 py-3 rounded-lg transition mb-8 text-lg">
-                <i class="fa-brands fa-whatsapp text-2xl"></i> Falar no WhatsApp: (65) 99610-8749
+            <a href="https://wa.me/5562996466033" target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Fale conosco pelo WhatsApp
             </a>
-
-            <br class="border-t border-slate-800 pt-6 mt-4 text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-2">
-                <br>KM Projetos & Engenharia </br> Cuiabá - MT </br>&copy; 2026 Todos os direitos reservados</p>
-                <p>Desenvolvido por: <a href="https://mgrupo.online/KM-PROJETOS/index.html" target="_blank" class="text-amber-500 hover:underline font-bold">RAZGO</a></p>
-            </div>
         </div>
-    </footer>
+    </div>
 
+    <script>
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズヅブプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        const alphabet = katakana + latin + nums;
+
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+
+        const rainDrops = [];
+
+        for (let x = 0; x < columns; x++) {
+            rainDrops[x] = 1;
+        }
+
+        const draw = () => {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00ff41';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < rainDrops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            }
+        };
+
+        setInterval(draw, 30);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
 </body>
 </html>
