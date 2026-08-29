@@ -38,7 +38,7 @@ Nossa atuação une a solidez da engenharia clássica com a agilidade da **Tecno
 
 ## 👤 Propriedade e Governança
 
-*   **Proprietário Responsável:** Márcio Rodrigues de Oliveira
+*   **Proprietário:** Márcio Rodrigues de Oliveira
 *   **Contato:** (65) 99610-8749
 *   **E-Mail:** atendimento.mgrupo@gmail.com
 
