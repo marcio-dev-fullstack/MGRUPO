@@ -1,88 +1,99 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>MAZZ - Acadêmico</title>
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#001f3f">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acadêmico - Soluções Inteligentes</title>
     <style>
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { background-color: #001f3f; color: white; font-family: sans-serif; text-align: center; margin: 0; padding: 40px 20px; line-height: 1.6; }
-        .icon { font-size: 60px; margin-bottom: 10px; }
-        h1 { font-size: 1.8rem; margin-bottom: 25px; letter-spacing: 2px; }
-        
-        .content-text { 
-            max-width: 500px; 
-            margin: 0 auto 35px auto; 
-            text-align: justify; 
-            font-size: 1rem; 
-            opacity: 0.95; 
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
         }
-        
-        .item-box { margin-bottom: 25px; }
-        .item-box b { color: #ffc107; font-size: 1.1rem; display: block; margin-bottom: 5px; }
-        
-        p.intro { text-align: center; font-style: italic; margin-bottom: 30px; color: #ffc107; }
-
-        /* Estilos do botão do WhatsApp */
-        .whatsapp-btn {
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1a365d;
+            border-bottom: 2px solid #3182ce;
+            padding-bottom: 10px;
+        }
+        .service-card {
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #3182ce;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            background-color: #f7fafc;
+        }
+        .service-card h2 {
+            margin-top: 0;
+            color: #2b6cb0;
+        }
+        .price {
+            font-weight: bold;
+            color: #276749;
+        }
+        .contact-box {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #ebf8ff;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .btn-whatsapp {
             display: inline-block;
             background-color: #25d366;
-            color: #ffffff;
-            font-weight: bold;
-            font-size: 1.1rem;
+            color: white;
+            padding: 10px 20px;
             text-decoration: none;
-            padding: 14px 24px;
-            border-radius: 50px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            margin-top: 15px;
-            transition: transform 0.2s ease, background-color 0.2s ease;
-        }
-
-        .whatsapp-btn:hover {
-            background-color: #1ebd56;
-            transform: scale(1.05);
-        }
-
-        .whatsapp-box {
-            text-align: center;
-            margin-top: 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
 
-    <div class="icon">🎓</div>
-    <h1>ACADÊMICO</h1>
+<div class="container">
+    <h1>🎓 ACADÊMICO</h1>
+    <p>Soluções inteligentes para quem busca agilidade e excelência acadêmica.</p>
 
-    <div class="content-text">
-        <p class="intro">Soluções inteligentes para quem busca agilidade e excelência acadêmica.</p>
-
-        <div class="item-box">
-            <b>📚 TCC SEM ESTRESSE</b>
-            Auxílio completo na estruturação, aplicação de normas e desenvolvimento de conteúdo. Deixe a parte burocrática conosco e foque na sua apresentação de sucesso.
-        </div>
-
-        <div class="item-box">
-            <b>💼 CARREIRA E ESTÁGIO</b>
-            Encontre a oportunidade ideal para o seu crescimento. Conectamos estudantes a vagas de estágio presenciais ou home office (remoto) na sua área de atuação.
-        </div>
-
-        <div class="item-box">
-            <b>🛠️ SUPORTE ACADÊMICO</b>
-            Soluções sob medida para elaboração de relatórios técnicos, artigos e produções científicas. Qualidade e rigor garantidos por profissionais experientes.
-        </div>
-
-        <!-- Destaque do WhatsApp -->
-        <div class="whatsapp-box">
-            <a href="https://wa.me/5565996108749" target="_blank" class="whatsapp-btn">
-                📱 Fale Conosco: (65) 99610-8749
-            </a>
-        </div>
+    <!-- Serviço 1 -->
+    <div class="service-card">
+        <h2>📚 Mentoria e Orientação em TCC</h2>
+        <p>Auxílio completo na estruturação, aplicação de normas ABNT, formatação e desenvolvimento metodológico para você apresentar seu trabalho com segurança.</p>
+        <p class="price">INVESTIMENTO: Artigo R$ 800,00 | Monografia R$ 1.200,00</p>
     </div>
 
-    <script src="footer.js"></script>
-    
+    <!-- Serviço 2 -->
+    <div class="service-card">
+        <h2>💼 Carreiras e Oportunidades de Estágio</h2>
+        <p>Conectamos estudantes a vagas de estágio presenciais ou home office (remoto) na sua área de atuação.</p>
+        <p class="price">INVESTIMENTO: R$ 800,00</p>
+    </div>
+
+    <!-- Serviço 3 -->
+    <div class="service-card">
+        <h2>🛠️ Suporte Acadêmico Especializado</h2>
+        <p>Suporte para estruturação de relatórios técnicos, artigos e produções científicas. Qualidade e rigor metodológico garantidos.</p>
+    </div>
+
+    <!-- Contato -->
+    <div class="contact-box">
+        <h3>📱 Fale Conosco</h3>
+        <p>WhatsApp: <strong>(65) 99610-8749</strong></p>
+        <a href="https://wa.me/5565996108749" class="btn-whatsapp" target="_blank">Enviar Mensagem no WhatsApp</a>
+    </div>
+</div>
+
 </body>
 </html>
