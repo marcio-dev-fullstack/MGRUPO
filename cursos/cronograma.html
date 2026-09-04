@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plano de Voo: Gestão de Eventos (Fullstack)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #0f172a;
+        color: #f8fafc;
+      }
+      .glass {
+        background: rgba(30, 41, 59, 0.7);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .week-card:hover {
+        border-color: #38bdf8;
+        transform: translateY(-2px);
+        transition: all 0.3s;
+      }
+      .gradient-text {
+        background: linear-gradient(90deg, #38bdf8, #818cf8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    </style>
+  </head>
+  <body class="p-4 md:p-8">
+    <header class="max-w-6xl mx-auto mb-12 text-center">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4 gradient-text">
+        Sistema de Gestão de Eventos
+      </h1>
+      <p class="text-slate-400 text-lg">
+        Cronograma Intensivo de 8 Semanas para Portfólio de Elite
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-4 mt-8">
+        <span
+          class="bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20 text-sm font-mono"
+          >React 18 + Vite</span
+        >
+        <span
+          class="bg-green-500/10 text-green-400 px-3 py-1 rounded-full border border-green-500/20 text-sm font-mono"
+          >Node + Fastify</span
+        >
+        <span
+          class="bg-indigo-500/10 text-indigo-400 px-3 py-1 rounded-full border border-indigo-500/20 text-sm font-mono"
+          >PostgreSQL + Prisma</span
+        >
+        <span
+          class="bg-yellow-500/10 text-yellow-400 px-3 py-1 rounded-full border border-yellow-500/20 text-sm font-mono"
+          >Docker</span
+        >
+      </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+      <section class="glass p-6 rounded-2xl week-card">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="bg-blue-600 p-2 rounded-lg">
+            <i class="fas fa-database"></i>
+          </div>
+          <h2 class="text-xl font-bold">Semana 1: Fundação & Modelagem</h2>
+        </div>
+        <p class="text-sm text-slate-400 mb-4 font-semibold italic">
+          Objetivo: Ter o banco e a API base rodando com Docker.
+        </p>
+        <ul class="space-y-3 text-slate-300">
+          <li class="flex gap-2 text-sm">
+            <span class="text-blue-400 font-bold">D1-2:</span> Setup monorepo
+            (/api, /web) e Docker Compose.
+          </li>
+          <li class="flex gap-2 text-sm">
+            <span class="text-blue-400 font-bold">D3-4:</span> Modelagem Prisma
+            (Event, Ticket, Participant, User).
+          </li>
+          <li class="flex gap-2 text-sm">
+            <span class="text-blue-400 font-bold">D5-7:</span> Estrutura API
+            (Controllers/Services) e Logger Pino.
+          </li>
+        </ul>
+        <div class="mt-4 pt-4 border-t border-slate-700 text-xs text-green-400">
+          <strong>Entrega:</strong> GET /health, migrations e seed de dados.
+        </div>
+      </section>
+
+      <section class="glass p-6 rounded-2xl week-card">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="bg-purple-600 p-2 rounded-lg">
+            <i class="fas fa-lock"></i>
+          </div>
+          <h2 class="text-xl font-bold">Semana 2: Autenticação & AuthZ</h2>
+        </div>
+        <p class="text-sm text-slate-400 mb-4 font-semibold italic">
+          Objetivo: Sistema de login seguro e roles (Admin/User).
+        </p>
+        <ul class="space-y-3 text-slate-300">
+          <li class="flex gap-2 text-sm">
+            <span class="text-purple-400 font-bold">D1-2:</span> JWT
+            (Access/Refresh Tokens) e Bcrypt.
+          </li>
+          <li class="flex gap-2 text-sm">
+            <span class="text-purple-400 font-bold">D3-4:</span> Middleware de
+            roles (Admin, Organizer, Attendee).
+          </li>
+          <li class="flex gap-2 text-sm">
+            <span class="text-purple-400 font-bold">D5-7:</span> Frontend:
+            Context API e Proteção de Rotas.
+          </li>
+        </ul>
+        <div class="mt-4 pt-4 border-t border-slate-700 text-xs text-green-400">
+          <strong>Entrega:</strong> Fluxo completo de login com persistência
+          segura.
+        </div>
+      </section>
+
+      <section class="glass p-6 rounded-2xl week-card">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="bg-emerald-600 p-2 rounded-lg">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <h2 class="text-xl font-bold">Semana 3: CRUD de Eventos (Core)</h2>
+        </div>
+        <p class="text-sm text-slate-400 mb-4 font-semibold italic">
+          Objetivo: Feature principal funcionando ponta a ponta.
+        </p>
+        <ul class="space-y-3 text-slate-300">
+          <li class="flex gap-2 text-sm">
+            <span class="text-emerald-400 font-bold">D1-2:</span> API: CRUD com
+            Zod, paginação e filtros.
+          </li>
+          <li class="flex gap-2 text-sm">
+            <span class="text-emerald-400 font-bold">D3-4:</span> React:
+            Listagem e Cache com React Query.
+          </li>
+          <li class="flex gap-2 text-sm">
+            <span class="text-emerald-400 font-bold">D5-7:</span> Forms com
+            React Hook Form + Upload Imagem.
+          </li>
+        </ul>
+        <div class="mt-4 pt-4 border-t border-slate-700 text-xs text-green-400">
+          <strong>Entrega:</strong> Gerenciamento completo de eventos com
+          interface polida.
+        </div>
+      </section>
+
+      <section class="glass p-6 rounded-2xl week-card">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="bg-yellow-600 p-2 rounded-lg">
+            <i class="fas fa-credit-card"></i>
+          </div>
+          <h2 class="text-xl font-bold">Semana 4: Inscrições & Checkout</h2>
+        </div>
+        <p class="text-sm text-slate-400 mb-4 font-semibold italic">
+          Objetivo: Lógica de negócio e transações de banco.
+        </p>
+        <ul class="space-y-3 text-slate-300">
+          <li class="flex gap-2 text-sm">
+            <span class="text-yellow-400 font-bold">D1-2:</span> DB Transactions
+            (Atomicidade) para pagamentos.
+          </li>
+          <li class="flex gap-2 text-sm">
+            <span class="text-yellow-400 font-bold">D3-4:</span> Controle de
+            vagas com concorrência (SELECT FOR UPDATE).
+          </li>
+          <li class="flex gap-2 text-sm">
+            <span class="text-yellow-400 font-bold">D5-7:</span> Webhook
+            simulado e Dashboard de inscritos.
+          </li>
+        </ul>
+        <div class="mt-4 pt-4 border-t border-slate-700 text-xs text-green-400">
+          <strong>Entrega:</strong> Fluxo de inscrição robusto anti-furos.
+        </div>
+      </section>
+
+      <section class="glass p-6 rounded-2xl week-card">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="bg-pink-600 p-2 rounded-lg">
+            <i class="fas fa-chart-pie"></i>
+          </div>
+          <h2 class="text-xl font-bold">Semana 5: Dashboard & Analytics</h2>
+        </div>
+        <p class="text-sm text-slate-400 mb-4 font-semibold italic">
+          Objetivo: Dados agregados e visualização.
+        </p>
+        <ul class="space-y-3 text-slate-300">
+          <li class="flex gap-2 text-sm">
+            <span class="text-pink-400 font-bold">D1-2:</span> Queries SQL
+            complexas e EXPLAIN ANALYZE.
+          </li>
+          <li class="flex gap-2 text-sm">
+            <span class="text-pink-400 font-bold">D3-4:</span> Gráficos com
+            Recharts e metrics cards.
+          </li>
+          <li class="flex gap-2 text-sm">
+            <span class="text-pink-400 font-bold">D5-7:</span> Exportação PDF e
+            Performance (Code Splitting).
+          </li>
+        </ul>
+        <div class="mt-4 pt-4 border-t border-slate-700 text-xs text-green-400">
+          <strong>Entrega:</strong> Painel gerencial com performance otimizada.
+        </div>
+      </section>
+
+      <section class="glass p-6 rounded-2xl week-card">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="bg-red-600 p-2 rounded-lg">
+            <i class="fas fa-vial"></i>
+          </div>
+          <h2 class="text-xl font-bold">Semana 6: Testes & Qualidade</h2>
+        </div>
+        <p class="text-sm text-slate-400 mb-4 font-semibold italic">
+          Objetivo: Provar qualidade de código (QA).
+        </p>
+        <ul class="space-y-3 text-slate-300">
+          <li class="flex gap-2 text-sm">
+            <span class="text-red-400 font-bold">D1-2:</span> Testes unitários
+            (Jest) em Services/Repositories.
+          </li>
+          <li class="flex gap-2 text-sm">
+            <span class="text-red-400 font-bold">D3-4:</span> Integração
+            (Supertest) nos fluxos críticos.
+          </li>
+          <li class="flex gap-2 text-sm">
+            <span class="text-red-400 font-bold">D5-7:</span> Frontend tests
+            (RTL + MSW) e CI no GitHub.
+          </li>
+        </ul>
+        <div class="mt-4 pt-4 border-t border-slate-700 text-xs text-green-400">
+          <strong>Entrega:</strong> Pipeline verde e cobertura > 70%.
+        </div>
+      </section>
+
+      <section class="glass p-6 rounded-2xl md:col-span-2">
+        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+          <i class="fas fa-balance-scale text-sky-400"></i> Decisões Técnicas &
+          Trade-offs
+        </h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm">
+            <thead>
+              <tr class="border-b border-slate-700">
+                <th class="py-3 px-4 text-sky-400">Situação</th>
+                <th class="py-3 px-4 text-sky-400">Decisão</th>
+                <th class="py-3 px-4 text-sky-400">Justificativa</th>
+              </tr>
+            </thead>
+            <tbody class="text-slate-300">
+              <tr class="border-b border-slate-800">
+                <td class="py-3 px-4 font-mono">ORM vs Raw SQL</td>
+                <td class="py-3 px-4">Prisma ORM</td>
+                <td class="py-3 px-4">Type-safety e velocidade de entrega.</td>
+              </tr>
+              <tr class="border-b border-slate-800">
+                <td class="py-3 px-4 font-mono">Estado Global</td>
+                <td class="py-3 px-4">Context + React Query</td>
+                <td class="py-3 px-4">
+                  Evita complexidade do Redux para dados do servidor.
+                </td>
+              </tr>
+              <tr class="border-b border-slate-800">
+                <td class="py-3 px-4 font-mono">Arquitetura</td>
+                <td class="py-3 px-4">Monolito Modular</td>
+                <td class="py-3 px-4">
+                  Baixo overhead cognitivo para projeto solo.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer
+      class="max-w-6xl mx-auto mt-12 mb-8 text-center text-slate-500 text-sm italic"
+    >
+      "O sucesso não vem de fazer coisas extraordinárias, mas de fazer o básico
+      de forma extraordinariamente consistente."
+    </footer>
+  </body>
+</html>
