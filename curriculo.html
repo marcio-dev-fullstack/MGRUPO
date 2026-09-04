@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Currículo - Márcio Rodrigues de Oliveira</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        linear-gradient(135deg, rgba(5,12,28,0.98), rgba(10,20,40,0.97)),
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: cover, 40px 40px, 40px 40px;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* =========================================
+       IMAGENS E DEGRADÊS DE FUNDO
+    ========================================= */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        url("https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1600&auto=format&fit=crop") left center / cover no-repeat,
+        url("https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1600&auto=format&fit=crop") right center / cover no-repeat;
+      opacity: 0.10;
+      z-index: -3;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at top right, rgba(0,180,255,0.18), transparent 35%),
+        radial-gradient(circle at bottom left, rgba(255,170,0,0.12), transparent 35%);
+      z-index: -2;
+    }
+
+    /* =========================================
+       CONTAINER PRINCIPAL
+    ========================================= */
+    .container {
+      width: 92%;
+      max-width: 1300px;
+      margin: 20px auto;
+      background: rgba(10, 18, 35, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      box-shadow: 
+        0 0 40px rgba(0,0,0,0.45),
+        0 0 14px rgba(0,180,255,0.08);
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        margin: 35px auto;
+        width: 95%;
+      }
+    }
+
+    /* =========================================
+       HEADER
+    ========================================= */
+    .header {
+      padding: 30px 20px;
+      background: linear-gradient(135deg, rgba(255,140,0,0.12), rgba(0,140,255,0.12));
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    @media (min-width: 768px) {
+      .header {
+        padding: 50px;
+      }
+    }
+
+    .header h1 {
+      font-size: clamp(26px, 5vw, 48px);
+      margin-bottom: 18px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+
+    /* =========================================
+       TÍTULOS / PROFISSÕES
+    ========================================= */
+    .profissoes {
+      line-height: 1.6;
+      font-size: clamp(14px, 2vw, 18px);
+      margin-bottom: 24px;
+      font-weight: 700;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .profissoes span {
+      display: inline-block;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .profissoes span:hover {
+      transform: translateX(4px);
+      filter: brightness(1.25);
+    }
+
+    .c1 { color: #00e5ff; }
+    .c2 { color: #69f0ae; }
+    .c3 { color: #ff9800; }
+    .c4 { color: #ffd600; }
+    .c5 { color: #ff5252; }
+    .c6 { color: #b388ff; }
+
+    /* =========================================
+       CONTATOS (RESPONSIVO)
+    ========================================= */
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .contact-item {
+      padding: 10px 16px;
+      border-radius: 40px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: transform 0.3s ease, filter 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(6px);
+      word-break: break-word;
+    }
+
+    .contact-item:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.15);
+    }
+
+    .github-item { color: #82b1ff; }
+    .local-item { color: #4fc3f7; }
+
+    /* =========================================
+       GRID / CONTEÚDO PRINCIPAL
+    ========================================= */
+    .content {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 950px) {
+      .content {
+        grid-template-columns: 340px 1fr;
+      }
+    }
+
+    .sidebar {
+      padding: 25px 20px;
+      background: rgba(255, 255, 255, 0.02);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    @media (min-width: 950px) {
+      .sidebar {
+        padding: 35px;
+        border-bottom: none;
+        border-right: 1px solid rgba(255, 255, 255, 0.05);
+      }
+    }
+
+    .main {
+      padding: 25px 20px;
+    }
+
+    @media (min-width: 950px) {
+      .main {
+        padding: 35px;
+      }
+    }
+
+    /* =========================================
+       SEÇÕES & TÍTULOS DE SEÇÃO
+    ========================================= */
+    .section {
+      margin-bottom: 35px;
+    }
+
+    .section h3 {
+      color: #00d4ff;
+      margin-bottom: 18px;
+      font-size: clamp(18px, 3vw, 22px);
+      border-bottom: 2px solid rgba(0, 212, 255, 0.18);
+      padding-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .subgroup-title {
+      color: #ffd54f;
+      font-size: 14px;
+      margin: 15px 0 8px 0;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    /* =========================================
+       SKILLS (HABILIDADES)
+    ========================================= */
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill {
+      padding: 8px 14px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #1565c0, #00acc1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .skill:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 14px rgba(0, 180, 255, 0.3);
+    }
+
+    /* =========================================
+       LISTAS & TEXTOS
+    ========================================= */
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      color: #d6e1ef;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    p {
+      color: #d8e2f0;
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .highlight {
+      color: #00e5ff;
+      font-weight: 700;
+    }
+
+    /* =========================================
+       JOBS & PROJETOS
+    ========================================= */
+    .job {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      margin-bottom: 20px;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .job:hover {
+      transform: translateY(-3px);
+      border-color: rgba(0, 180, 255, 0.22);
+      box-shadow: 0 0 20px rgba(0, 180, 255, 0.12);
+    }
+
+    .job h4 {
+      font-size: clamp(16px, 2.5vw, 19px);
+      margin-bottom: 6px;
+      color: #ffffff;
+    }
+
+    .job span {
+      display: block;
+      margin-bottom: 12px;
+      color: #9eb6d5;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .project {
+      background: rgba(0, 180, 255, 0.05);
+      padding: 22px;
+      border-radius: 16px;
+      border-left: 4px solid #00d4ff;
+    }
+
+    .project h4 {
+      font-size: clamp(18px, 3vw, 22px);
+      margin-bottom: 12px;
+      color: #00e5ff;
+    }
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.2);
+      color: #9fb3c8;
+      font-size: 13px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- HEADER -->
+    <header class="header">
+      <h1>Márcio Rodrigues de Oliveira</h1>
+
+      <div class="profissoes">
+        <div><span class="c4">Engenheiro Civil</span></div>
+        <div><span class="c6">Engenheiro de Tráfego</span></div>
+        <div><span class="c3">Analista Sênior de Projetos</span></div>
+        <div><span class="c2">DEV Sênior Fullstack & Mobile Sênior</span></div>
+        <div><span class="c5">Engenheiro de Segurança do Trabalho</span></div>                  
+        
+      </div>
+
+      <div class="contact">
+        <div class="contact-item github-item">
+          💻 github.com/marcio-dev-fullstack | 🌐 http://mgrupo.online
+        </div>
+        <div class="contact-item local-item">
+          📍 Cuiabá - MT | 📱 (65) 99610-8749 | ✉️ cda.marcio@gmail.com | 🚗 CNH AD
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT GRID -->
+    <div class="content">
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+
+        <div class="section">
+          <h3>Competências</h3>
+          <div class="skills">
+            <div class="skill">Git Hub</div>
+            <div class="skill">APIs</div>
+            <div class="skill">Flutter</div>
+            <div class="skill">PHP</div>
+            <div class="skill">JavaScript</div>
+            <div class="skill">Python</div>
+            <div class="skill">Java</div>            
+            <div class="skill">PostgreSQL</div>
+            <div class="skill">Linux</div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>Mestrado</h3>
+          <ul>
+            <li>Inteligência Artificial (CURSANDO)</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h3>Graduações</h3>
+          <ul>
+            <li>Engenharia Civil</li>
+            <li>Sistemas de Informação</li>
+            <li>Licenciatura em Matemática</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h3>Especializações</h3>
+          <div class="subgroup-title">Área de TI</div>
+          <ul>
+            <li>Cibersegurança</li>
+            <li>Banco de Dados</li>
+            <li>Cloud Computing</li>
+            <li>Engenharia de Sistemas</li>
+            <li>Gestão de Projetos de TI</li>
+            <li>Engenharia de Software e Gestão de Projetos</li>
+            <li>Engenharia DevOps (CURSANDO)</li>
+          </ul>
+
+          <div class="subgroup-title">Área de Engenharia</div>
+          <ul>
+            <li>Engenharia de Segurança do Trabalho</li>
+            <li>Cálculo Estrutural</li>
+            <li>BIM e Projetos Estruturais</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h3>Diferenciais</h3>
+          <ul>
+            <li>20+ anos em TI</li>
+            <li>Experiência Pública e Privada</li>
+            <li>Perfil Multidisciplinar</li>
+            <li>Engenharia + Tecnologia</li>
+            <li>Desenvolvimento Mobile e Web</li>
+            <li>Infraestrutura e Sistemas</li>
+          </ul>
+        </div>
+
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="main">
+
+        <div class="section">
+          <h3>Resumo Profissional</h3>
+          <p>
+            Profissional multidisciplinar com sólida atuação em
+            <span class="highlight">Tecnologia da Informação e Engenharia Civil</span>,
+            reunindo mais de 20 anos de experiência em desenvolvimento de sistemas,
+            infraestrutura, aplicações mobile, engenharia estrutural,
+            fiscalização técnica e gestão tecnológica.
+          </p>
+          <br>
+          <p>
+            Experiência prática utilizando
+            <strong>Flutter, Dart, Provider, APIs REST, PostgreSQL, JavaScript e soluções offline-first</strong>,
+            além de atuação técnica em projetos civis, BIM, topografia, fiscalização e infraestrutura.
+          </p>
+        </div>
+
+        <div class="section">
+          <h3>Experiência Profissional</h3>
+
+          <div class="job">
+            <h4>Governo do MT — Analista Sênior de Projetos de TI (Cuiabá - MT)</h4>
+            <span>2026 – Atual</span>
+            <p>Como Analista de Projetos Sênior, atuo como o elo estratégico entre a visão de negócio e a execução técnica. Minha missão é liderar iniciativas complexas de ponta a ponta, garantindo previsibilidade, governança e a entrega de valor real para a organização.</p>
+          </div>
+
+          <div class="job">
+            <h4>MAZZ — DEV Sênior Fullstack & Mobile (ONLINE)</h4>
+            <span>2025 – Atual</span>
+            <ul>
+              <li>Aplicações web e mobile.</li>
+              <li>Flutter, PHP e JavaScript.</li>
+              <li>Arquitetura de sistemas.</li>
+              <li>Conteúdo técnico para cursos.</li>
+            </ul>
+          </div>
+
+          
+          <div class="job">
+            <h4>KM Projetos de Engenharia — Engenheiro Civil (Cuiabá - MT)</h4>
+            <span>2024 – Atual</span>
+            <ul>
+              <li>Planejamento e orçamento.</li>
+              <li>Inspeções técnicas e laudos.</li>
+              <li>Projetos civis e estruturais.</li>            
+              <li>Compatibilização de projetos.</li>
+              <li>Utilização de AutoCAD, Revit e BIM.</li>
+               <li>Fiscalização e acompanhamento de obras.</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <h4>Prefeitura Municipal — Analista de Sistemas (Conceição do Araguaia - PA)</h4>
+            <span>2012 – 2026</span>
+            <ul>
+              <li>Banco de dados.</li>
+              <li>Infraestrutura tecnológica.</li>              
+              <li>Desenvolvimento de soluções internas.</li>
+              <li>Administração de sistemas corporativos.</li>              
+            </ul>
+          </div>
+
+          <div class="job">
+            <h4>UEPA — Professor de Informática (Conceição do Araguaia - PA)</h4>
+            <span>2011 – 2012</span>
+            <ul>
+              <li>Aulas práticas e teóricas.</li>
+              <li>Programação, infraestrutura e sistemas.</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <h4>IFPA — Professor de Informática (Conceição do Araguaia - PA)</h4>
+            <span>2014 – 2015</span>
+            <ul>
+              <li>Aulas práticas e teóricas.</li>
+              <li>Programação, infraestrutura e sistemas.</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <h4>FUJIOKA — Técnico em Informática (Goiânia - GO)</h4>
+            <span>2008 – 2009</span>
+            <ul>
+              <li>Infraestrutura de redes.</li>
+              <li>Servidores e manutenção.</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <h4>STEFANINI — Técnico em Informática (Belém - PA)</h4>
+            <span>2006</span>
+            <ul>
+              <li>Infraestrutura de redes.</li>
+              <li>Servidores e manutenção.</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <h4>TV LIBERAL — Técnico em Informática (Belém - PA)</h4>
+            <span>2004 – 2005</span>
+            <ul>
+              <li>Infraestrutura de redes.</li>
+              <li>Servidores e manutenção.</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </main>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      Currículo Profissional Multidisciplinar • Engenharia + Tecnologia • 2026
+    </footer>
+
+  </div>
+
+</body>
+
+</html>
