@@ -348,12 +348,12 @@
 
         <div class="form-group">
             <label>Nome do Aluno</label>
-            <input type="text" id="inAluno" value="Carlos Eduardo Silva" oninput="updateCert()">
+            <input type="text" id="inAluno" value="Bill Gates" oninput="updateCert()">
         </div>
 
         <div class="form-group">
             <label>Nome do Curso</label>
-            <input type="text" id="inCurso" value="Especialização em Gestão de Segurança do Trabalho" oninput="updateCert()">
+            <input type="text" id="inCurso" value="Segurança do Trabalho" oninput="updateCert()">
         </div>
 
         <div class="form-group">
@@ -362,13 +362,14 @@
         </div>
 
         <div class="form-group">
-            <label>Professor / Instrutor</label>
-            <input type="text" id="inProfessor" value="Prof. Roberto Mazzer" oninput="updateCert()">
+            <label>Professor</label>
+            <input type="text" id="inProfessor" value="Engenheiro Márcio Rodrigues de Oliveira, 
+            CREA: 1522223070PA" oninput="updateCert()">
         </div>
 
         <div class="form-group">
             <label>Data de Conclusão</label>
-            <input type="date" id="inDataConclusao" value="2026-08-27" onchange="updateCert()">
+            <input type="date" id="inDataConclusao" value="2050-01-01" onchange="updateCert()">
         </div>
 
         <div class="form-group">
@@ -377,7 +378,7 @@
         </div>
 
         <div class="form-group">
-            <label>Ementa / Conteúdo Programático</label>
+            <label>Conteúdo Programático</label>
             <textarea id="inEmenta" oninput="updateCert()">1. Introdução à Normas Regulamentadoras (NRs)
 2. Gestão de Riscos Ocupacionais (GRO) e PGR
 3. Inspeção e Auditoria de Segurança
@@ -401,14 +402,15 @@
                 <!-- Logo Central -->
                 <img id="outLogo" src="img/022.png" alt="MAZZ Logo" class="cert-logo">
                 <p>Cursos e Capacitações</p>
-                <h1>Certificado de Conclusão</h1>
+                <h1>Certificado</h1>
             </div>
 
             <div class="cert-body">
                 <p>
-                    Certificamos que <strong id="outAluno">Carlos Eduardo Silva</strong> concluiu com êxito o curso de 
+                    Certificamos que <strong id="outAluno">Bill Gates</strong> concluiu com êxito o curso de 
                     <strong id="outCurso">Especialização em Gestão de Segurança do Trabalho</strong>, 
-                    ministrado pelo(a) professor(a) <span id="outProfessorDisplay" style="font-weight:600; color:var(--primary);">Prof. Roberto Mazzer</span>, 
+                    ministrado pelo(a) professor(a) <span id="outProfessorDisplay" style="font-weight:600; color:var(--primary);">Engenheiro Márcio Rodrigues de Oliveira, 
+                      CREA: 1522223070PA</span>, 
                     com carga horária total de <strong id="outCH">40</strong> horas, finalizado em <span id="outDataConclusaoFrente"></span>.
                 </p>
             </div>
@@ -422,7 +424,7 @@
                 </div>
 
                 <div class="company-info">
-                    <p><strong>MAZZ Cursos e Capacitações</strong></p>
+                    <p><stong>MAZZ Cursos e Capacitações</stong></p>
                     <p style="font-size: 0.8rem; color: #555;">CNPJ: 68.664.946/0001-96</p>
                 </div>
 
@@ -439,7 +441,7 @@
 
             <div class="verso-container-top">
                 <!-- Logo Central Verso -->
-                <h2 class="verso-title">Conteúdo Programático / Ementa</h2>
+                <h2 class="verso-title">Conteúdo Programático</h2>
                 <div class="verso-info">
                     <p><strong>Curso:</strong> <span id="outCursoVerso">Especialização em Gestão de Segurança do Trabalho</span></p>
                     <p><strong>Carga Horária:</strong> <span id="outCHVerso">40</span>h</p>
@@ -451,7 +453,7 @@
             <div class="verso-footer">
                 <div class="validation-info">
                     <p><strong>Autenticidade do Documento:</strong></p>
-                    <p>Para verificar a validade deste certificado, acesse <u>https://mgrupo.online/MAZZ/valida.html</u> e digite o código de verificação: <strong id="outCodigo">MAZZ-2026-0891</strong> ou aponte a câmera para o QR Code ao lado.</p>
+                    <p>Para verificar a validade deste certificado, acesse <u>https://mgrupo.online/valida.html</u> e digite o código de verificação: <strong id="outCodigo">MAZZ-2026-0891</strong> ou aponte a câmera para o QR Code ao lado.</p>
                     <br>
                     <p style="font-size: 0.72rem; color: #888;">MAZZ Cursos e Capacitações – CNPJ 68.664.946/0001-96 – Goiânia/GO</p>
                 </div>
@@ -522,7 +524,7 @@
         document.getElementById('outCodigo').innerText = codigo;
 
         // Atualizar QR Code
-        const urlValida = `https://mgrupo.online/MAZZ/valida.html?codigo=${encodeURIComponent(codigo)}`;
+        const urlValida = `https://mgrupo.online/valida.html?codigo=${encodeURIComponent(codigo)}`;
         
         document.getElementById('qrcode').innerHTML = "";
         qrcodeObj = new QRCode(document.getElementById("qrcode"), {
