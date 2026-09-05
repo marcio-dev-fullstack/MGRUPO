@@ -106,14 +106,33 @@
             width: 297mm;
             height: 210mm;
             background: #fff;
-            padding: 15mm;
+            padding: 15mm 20mm;
             position: relative;
             box-shadow: 0 5px 25px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             box-sizing: border-box;
+            overflow: hidden;
             background-image: radial-gradient(circle, #fbfbfb 0%, #fff 100%);
+        }
+
+        /* Marca d'água no fundo */
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 45%;
+            opacity: 0.06;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Garantir que o conteúdo fique acima da marca d'água */
+        .certificate-page > * {
+            position: relative;
+            z-index: 2;
         }
 
         /* Borda Elegante */
@@ -127,41 +146,47 @@
             outline: 1px solid var(--secondary);
             outline-offset: -4px;
             pointer-events: none;
+            z-index: 3;
         }
 
         /* Estilo da Logo Central */
         .cert-logo {
-            max-width: 200px;
+            max-width: 140px;
             height: auto;
-            margin: 0 auto 10px auto;
+            margin: 0 auto;
             display: block;
         }
 
         /* Frente */
         .cert-header {
             text-align: center;
-            margin-top: 5px;
         }
 
         .cert-header h1 {
-            font-size: 2.2rem;
+            font-size: 2.1rem;
             color: var(--primary);
             letter-spacing: 2px;
             text-transform: uppercase;
+            margin-top: 8px;
         }
 
         .cert-header p {
-            font-size: 1.2rem;
+            font-size: 1.05rem;
             color: var(--secondary);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-top: 5px;
+            margin-top: 4px;
         }
 
+        /* Bloco centralizado perfeitamente */
         .cert-body {
             text-align: center;
             padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
         }
 
         .cert-body p {
@@ -173,61 +198,76 @@
         .cert-body strong {
             color: var(--primary);
             font-size: 1.35rem;
-            border-bottom: 1px solid var(--secondary);
         }
 
         .cert-footer {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            padding: 0 40px 10px 40px;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 8px;
         }
 
-        .signature-block {
+        /* Bloco de Assinatura da Direção */
+        .signature-direction {
             text-align: center;
             width: 220px;
         }
 
-        .signature-line {
-            border-top: 1px solid #777;
-            margin-bottom: 5px;
+        .signature-img {
+            max-height: 40px;
+            margin: 0 auto -6px auto;
+            display: block;
         }
 
-        .signature-block p {
+        .signature-line {
+            border-top: 1px solid #777;
+            margin-bottom: 3px;
+        }
+
+        .company-info {
+            text-align: center;
+        }
+
+        .company-info p {
             font-size: 0.85rem;
             color: #333;
         }
 
         .date-location {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: #555;
             font-style: italic;
         }
 
         /* Verso */
+        .verso-container-top {
+            margin-top: 2px;
+        }
+
         .verso-title {
             color: var(--primary);
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             text-align: center;
             border-bottom: 2px solid var(--secondary);
-            padding-bottom: 5px;
-            margin-bottom: 15px;
+            padding-bottom: 3px;
+            margin-bottom: 10px;
         }
 
         .verso-info {
-            font-size: 1rem;
-            margin-bottom: 15px;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
         }
 
         .ementa-box {
             border: 1px solid #ddd;
-            padding: 15px;
+            padding: 12px 15px;
             border-radius: 5px;
             background: #fafafa;
-            min-height: 180px;
-            font-size: 0.95rem;
+            min-height: 150px;
+            font-size: 0.9rem;
             white-space: pre-line;
-            line-height: 1.5;
+            line-height: 1.4;
         }
 
         .verso-footer {
@@ -235,13 +275,14 @@
             justify-content: space-between;
             align-items: center;
             border-top: 1px solid #eee;
-            padding-top: 15px;
+            padding-top: 10px;
         }
 
         .validation-info {
             max-width: 65%;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             color: #555;
+            line-height: 1.3;
         }
 
         .qr-code-box {
@@ -257,6 +298,10 @@
 
         /* Configurações de Impressão */
         @media print {
+            @page {
+                margin: 0;
+            }
+
             body {
                 background: none;
                 padding: 0;
@@ -291,6 +336,16 @@
         <h2>Dados do Certificado</h2>
         
         <div class="form-group">
+            <label>Logo da Empresa (Arquivo)</label>
+            <input type="file" id="inLogoFile" accept="image/*" onchange="loadFile(event, 'outLogo')">
+        </div>
+
+        <div class="form-group">
+            <label>Assinatura da Direção (Arquivo)</label>
+            <input type="file" id="inAssinaturaFile" accept="image/*" onchange="loadFile(event, 'outAssinatura')">
+        </div>
+
+        <div class="form-group">
             <label>Nome do Aluno</label>
             <input type="text" id="inAluno" value="Carlos Eduardo Silva" oninput="updateCert()">
         </div>
@@ -312,7 +367,7 @@
 
         <div class="form-group">
             <label>Data de Conclusão</label>
-            <input type="date" id="inData" value="2026-08-27" onchange="updateCert()">
+            <input type="date" id="inDataConclusao" value="2026-08-27" onchange="updateCert()">
         </div>
 
         <div class="form-group">
@@ -338,12 +393,13 @@
         <!-- FRENTE -->
         <div class="certificate-page">
             <div class="border-frame"></div>
+            <!-- Marca d'água aplicada -->
+            <img src="04.png" alt="Marca D'água" class="watermark">
             
             <div class="cert-header">
                 <!-- Logo Central -->
-                <img src="img/022.png" alt="MAZZ Logo" class="cert-logo">
-		<p>Cursos e Capacitações</p>
-		<br>
+                <img id="outLogo" src="img/022.png" alt="MAZZ Logo" class="cert-logo">
+                <p>Cursos e Capacitações</p>
                 <h1>Certificado de Conclusão</h1>
             </div>
 
@@ -352,25 +408,24 @@
                     Certificamos que <strong id="outAluno">Carlos Eduardo Silva</strong> concluiu com êxito o curso de 
                     <strong id="outCurso">Especialização em Gestão de Segurança do Trabalho</strong>, 
                     ministrado pelo(a) professor(a) <span id="outProfessorDisplay" style="font-weight:600; color:var(--primary);">Prof. Roberto Mazzer</span>, 
-                    com carga horária total de <strong id="outCH">40</strong> horas, finalizado em <span id="outDataFrente">27/08/2026</span>.
+                    com carga horária total de <strong id="outCH">40</strong> horas, finalizado em <span id="outDataConclusaoFrente"></span>.
                 </p>
             </div>
 
             <div class="cert-footer">
-                <div class="signature-block">
+                <!-- Bloco Assinatura da Direção -->
+                <div class="signature-direction">
+                    <img id="outAssinatura" src="" alt="" class="signature-img" style="display: none;">
                     <div class="signature-line"></div>
-                    <p><strong>MAZZ Cursos e Capacitações</strong></p>
-                    <p style="font-size: 0.75rem;">CNPJ: 68.664.946/0001-96</p>
+                    <p><strong>Direção Geral</strong></p>
+                </div>
+
+                <div class="company-info">
+                    <p><strong>MAZZ Cursos e Capacitações</strong> - CNPJ: 68.664.946/0001-96</p>
                 </div>
 
                 <div class="date-location">
-                    Cuiabá - MT, <span id="outDataExtenso">27 de Agosto de 2026</span>.
-                </div>
-
-                <div class="signature-block">
-                    <div class="signature-line"></div>
-                    <p><strong id="outProfessorSig">Prof. Roberto Mazzer</strong></p>
-                    <p style="font-size: 0.75rem;">Instrutor Responsável</p>
+                    Cuiabá - MT, <span id="outDataAtualExtenso"></span>.
                 </div>
             </div>
         </div>
@@ -378,8 +433,9 @@
         <!-- VERSO -->
         <div class="certificate-page">
             <div class="border-frame"></div>
+            <img src="04.png" alt="Marca D'água" class="watermark">
 
-            <div>
+            <div class="verso-container-top">
                 <!-- Logo Central Verso -->
                 <h2 class="verso-title">Conteúdo Programático / Ementa</h2>
                 <div class="verso-info">
@@ -395,12 +451,12 @@
                     <p><strong>Autenticidade do Documento:</strong></p>
                     <p>Para verificar a validade deste certificado, acesse <u>https://mgrupo.online/MAZZ/valida.html</u> e digite o código de verificação: <strong id="outCodigo">MAZZ-2026-0891</strong> ou aponte a câmera para o QR Code ao lado.</p>
                     <br>
-                    <p style="font-size: 0.75rem; color: #888;">MAZZ Cursos e Capacitações – CNPJ 68.664.946/0001-96 – Cuiabá/MT</p>
+                    <p style="font-size: 0.72rem; color: #888;">MAZZ Cursos e Capacitações – CNPJ 68.664.946/0001-96 – Cuiabá/MT</p>
                 </div>
 
                 <div class="qr-code-box">
                     <div id="qrcode"></div>
-                    <span style="font-size: 0.7rem; color: #555; margin-top: 4px;">Validação Oficial</span>
+                    <span style="font-size: 0.7rem; color: #555; margin-top: 2px;">Validação Oficial</span>
                 </div>
             </div>
         </div>
@@ -410,6 +466,7 @@
 
 <script>
     let qrcodeObj = null;
+    let dataGeracaoAtual = null;
 
     function formatDate(dateString) {
         if (!dateString) return '';
@@ -425,13 +482,26 @@
         return `${date.getDate()} de ${meses[date.getMonth()]} de ${date.getFullYear()}`;
     }
 
+    // Função para carregar as imagens de upload (Logo e Assinatura)
+    function loadFile(event, targetId) {
+        const input = event.target;
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imgElement = document.getElementById(targetId);
+                imgElement.src = e.target.result;
+                imgElement.style.display = 'block';
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
     function updateCert() {
-        // Obter valores
         const aluno = document.getElementById('inAluno').value;
         const curso = document.getElementById('inCurso').value;
         const ch = document.getElementById('inCH').value;
         const prof = document.getElementById('inProfessor').value;
-        const data = document.getElementById('inData').value;
+        const dataConclusao = document.getElementById('inDataConclusao').value;
         const codigo = document.getElementById('inCodigo').value;
         const ementa = document.getElementById('inEmenta').value;
 
@@ -440,9 +510,8 @@
         document.getElementById('outCurso').innerText = curso;
         document.getElementById('outCH').innerText = ch;
         document.getElementById('outProfessorDisplay').innerText = prof;
-        document.getElementById('outDataFrente').innerText = formatDate(data);
-        document.getElementById('outDataExtenso').innerText = formatDateExtenso(data);
-        document.getElementById('outProfessorSig').innerText = prof;
+        document.getElementById('outDataConclusaoFrente').innerText = formatDate(dataConclusao);
+        document.getElementById('outDataAtualExtenso').innerText = formatDateExtenso(dataGeracaoAtual);
 
         // Atualizar Verso
         document.getElementById('outCursoVerso').innerText = curso;
@@ -464,8 +533,14 @@
         });
     }
 
-    // Inicializar ao carregar
     window.onload = function() {
+        const hoje = new Date();
+        const ano = hoje.getFullYear();
+        const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+        const dia = String(hoje.getDate()).padStart(2, '0');
+        
+        dataGeracaoAtual = `${ano}-${mes}-${dia}`;
+
         updateCert();
     };
 </script>
