@@ -21,10 +21,30 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
+        /* Topo em destaque */
+        .header-profile {
+            background-color: #ebf8ff;
+            border: 1px solid #bee3f8;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .header-profile h2 {
+            margin: 0 0 5px 0;
+            color: #1a365d;
+            font-size: 1.8rem;
+        }
+        .header-profile p {
+            margin: 0 0 15px 0;
+            color: #4a5568;
+            font-size: 1rem;
+        }
         h1 {
             color: #1a365d;
             border-bottom: 2px solid #3182ce;
             padding-bottom: 10px;
+            margin-top: 0;
         }
         .service-card {
             border: 1px solid #e2e8f0;
@@ -59,11 +79,31 @@
             font-weight: bold;
             margin-top: 10px;
         }
+        .btn-curriculo {
+            display: inline-block;
+            background-color: #3182ce;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        .btn-curriculo:hover {
+            background-color: #2b6cb0;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <!-- Destaque no Topo -->
+    <div class="header-profile">
+        <h2>👨‍🏫 Profº Márcio Oliveira</h2>
+        <p>Consultoria & Orientação Acadêmica</p>
+        <a href="https://mgrupo.online/curriculo.html" class="btn-curriculo" target="_blank" rel="noopener noreferrer">📄 Ver Currículo do Professor</a>
+    </div>
+
     <h1>🎓 ACADÊMICO</h1>
     <p>Soluções inteligentes para quem busca agilidade e excelência acadêmica.</p>
 
@@ -91,7 +131,7 @@
     <div class="contact-box">
         <h3>📱 Fale Conosco</h3>
         <p>WhatsApp: <strong>(62) 99646-6033</strong></p>
-        <a href="https://wa.me/5562996466033" class="btn-whatsapp" target="_blank">Enviar Mensagem no WhatsApp</a>
+        <a href="https://wa.me/5562996466033" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">Enviar Mensagem no WhatsApp</a>
     </div>
 </div>
 
