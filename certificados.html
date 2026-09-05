@@ -106,7 +106,7 @@
             width: 297mm;
             height: 210mm;
             background: #fff;
-            padding: 15mm 20mm;
+            padding: 12mm 20mm;
             position: relative;
             box-shadow: 0 5px 25px rgba(0,0,0,0.1);
             display: flex;
@@ -179,14 +179,9 @@
             margin-top: 4px;
         }
 
-        /* Bloco centralizado perfeitamente */
         .cert-body {
             text-align: center;
             padding: 0 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-grow: 1;
         }
 
         .cert-body p {
@@ -205,7 +200,8 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 8px;
+            gap: 6px;
+            padding-bottom: 5px;
         }
 
         /* Bloco de Assinatura da Direção */
@@ -225,6 +221,11 @@
             margin-bottom: 3px;
         }
 
+        .signature-direction p {
+            font-size: 0.9rem;
+            color: #333;
+        }
+
         .company-info {
             text-align: center;
         }
@@ -242,7 +243,7 @@
 
         /* Verso */
         .verso-container-top {
-            margin-top: 2px;
+            margin-top: 0;
         }
 
         .verso-title {
@@ -251,12 +252,12 @@
             text-align: center;
             border-bottom: 2px solid var(--secondary);
             padding-bottom: 3px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .verso-info {
             font-size: 0.95rem;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .ementa-box {
@@ -275,7 +276,7 @@
             justify-content: space-between;
             align-items: center;
             border-top: 1px solid #eee;
-            padding-top: 10px;
+            padding-top: 12px;
         }
 
         .validation-info {
@@ -421,11 +422,12 @@
                 </div>
 
                 <div class="company-info">
-                    <p><strong>MAZZ Cursos e Capacitações</strong> - CNPJ: 68.664.946/0001-96</p>
+                    <p><strong>MAZZ Cursos e Capacitações</strong></p>
+                    <p style="font-size: 0.8rem; color: #555;">CNPJ: 68.664.946/0001-96</p>
                 </div>
 
                 <div class="date-location">
-                    Cuiabá - MT, <span id="outDataAtualExtenso"></span>.
+                    Goiânia - GO, <span id="outDataAtualExtenso"></span>.
                 </div>
             </div>
         </div>
@@ -451,7 +453,7 @@
                     <p><strong>Autenticidade do Documento:</strong></p>
                     <p>Para verificar a validade deste certificado, acesse <u>https://mgrupo.online/MAZZ/valida.html</u> e digite o código de verificação: <strong id="outCodigo">MAZZ-2026-0891</strong> ou aponte a câmera para o QR Code ao lado.</p>
                     <br>
-                    <p style="font-size: 0.72rem; color: #888;">MAZZ Cursos e Capacitações – CNPJ 68.664.946/0001-96 – Cuiabá/MT</p>
+                    <p style="font-size: 0.72rem; color: #888;">MAZZ Cursos e Capacitações – CNPJ 68.664.946/0001-96 – Goiânia/GO</p>
                 </div>
 
                 <div class="qr-code-box">
